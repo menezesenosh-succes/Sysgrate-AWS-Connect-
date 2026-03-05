@@ -1,0 +1,2003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Amazon Connect Partner — Sysgrate | Cloud Contact Center Solutions</title>
+<meta name="description" content="Sysgrate is a certified Amazon Connect delivery partner. We deploy, migrate, and manage cloud contact centers powered by AWS — with AI, omnichannel, and full CRM integration." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;0,14..32,900&display=swap" rel="stylesheet" />
+
+<style>
+/* ════════════════════════════════════════════════════════════
+   SYSGRATE × AMAZON CONNECT — Design System
+   Primary: Sysgrate Purple  #4F2DC4
+   Accent:  AWS Orange       #FF9900
+   Dark:    Deep Navy        #050B1A
+   Font:    Inter
+   ════════════════════════════════════════════════════════════ */
+:root {
+  /* Sysgrate Purple */
+  --sg-900: #1A0960; --sg-800: #2B12A0; --sg-700: #3B1FA3;
+  --sg-600: #4F2DC4; --sg-500: #6B3DE8; --sg-400: #8B63F0;
+  --sg-300: #B39AF7; --sg-200: #D4C5FB; --sg-100: #EDE8FD; --sg-50: #F6F3FF;
+
+  /* AWS Orange accent */
+  --aws: #FF9900; --aws-d: #E88600; --aws-l: #FFB74D; --aws-50: #FFF8EC;
+
+  /* Deep navy dark tones */
+  --dark-1: #050B1A; --dark-2: #0A1628; --dark-3: #0F1F3A; --dark-4: #162544;
+
+  /* Neutrals */
+  --n-950: #090912; --n-900: #111120; --n-800: #1D1D32; --n-700: #2D2D48;
+  --n-600: #48486A; --n-500: #6B6B90; --n-400: #9595B2; --n-300: #C0C0D4;
+  --n-200: #E0E0EE; --n-150: #EAEAF4; --n-100: #F0F0F8; --n-50: #F7F7FC;
+  --white: #FFFFFF;
+
+  /* Semantic */
+  --text-1: var(--n-950); --text-2: var(--n-600); --text-3: var(--n-400);
+  --border: var(--n-200); --bg: var(--white); --bg-2: var(--n-50); --bg-3: #F2F2FA;
+
+  /* Font */
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Shadows */
+  --s-sm: 0 1px 4px rgba(0,0,0,.06), 0 2px 8px rgba(0,0,0,.04);
+  --s-md: 0 4px 16px rgba(0,0,0,.08), 0 1px 4px rgba(0,0,0,.04);
+  --s-lg: 0 12px 44px rgba(0,0,0,.12), 0 3px 12px rgba(0,0,0,.06);
+  --s-purple: 0 8px 32px rgba(107,61,232,.28);
+  --s-aws: 0 8px 32px rgba(255,153,0,.25);
+
+  /* Layout */
+  --max-w: 1140px; --sec-pad: 120px 7%; --r-card: 18px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font); font-size: 16px; line-height: 1.65;
+  color: var(--text-1); background: var(--bg);
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  font-optical-sizing: auto;
+  font-feature-settings: "cv02" 1, "cv03" 1, "cv11" 1, "ss01" 1;
+}
+h1,h2,h3,h4,h5,h6 { font-family: var(--font); line-height: 1.1; font-optical-sizing: auto; }
+img { display: block; max-width: 100%; }
+
+/* ══ CURSOR GLOW ══ */
+#cursor-glow {
+  position: fixed; pointer-events: none; z-index: 9998;
+  width: 480px; height: 480px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(79,45,196,.055) 0%, transparent 70%);
+  transform: translate(-50%,-50%);
+  transition: opacity .3s;
+}
+
+/* ══ ANNOUNCEMENT BAR ══ */
+.annc {
+  background: linear-gradient(90deg, var(--dark-2) 0%, var(--sg-800) 60%, #1a2a4a 100%);
+  color: rgba(255,255,255,.9); text-align: center; padding: 11px 20px;
+  font-size: 13px; font-weight: 500; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.annc::after {
+  content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,153,0,.12), transparent);
+  animation: annc-shine 5s ease-in-out infinite;
+}
+@keyframes annc-shine { 0%{left:-60%} 55%{left:120%} 100%{left:120%} }
+.annc-badge {
+  background: var(--aws); color: var(--dark-1);
+  font-size: 10.5px; font-weight: 800; padding: 3px 9px;
+  border-radius: 100px; letter-spacing: .04em; text-transform: uppercase; flex-shrink: 0;
+}
+.annc a { color: var(--aws-l); text-decoration: none; font-weight: 600; margin-left: 8px; }
+.annc a:hover { text-decoration: underline; }
+
+/* ══ NAV ══ */
+nav {
+  position: sticky; top: 0; z-index: 999;
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  padding: 0 7%; height: 70px;
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  transition: box-shadow .3s;
+}
+nav.scrolled { box-shadow: 0 2px 32px rgba(79,45,196,.1), 0 1px 0 rgba(79,45,196,.05); }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo img { height: 32px; width: auto; }
+.nav-logo-fb { font-size: 18px; font-weight: 800; letter-spacing: -0.03em; color: var(--sg-700); display: none; }
+.nav-divider { width: 1px; height: 22px; background: var(--border); }
+.nav-product {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12.5px; font-weight: 700; color: var(--n-600);
+  background: var(--aws-50); border: 1px solid rgba(255,153,0,.25);
+  padding: 4px 10px; border-radius: 6px;
+}
+.nav-product-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--aws); animation: pulse 2.5s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.65)} }
+.nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+.nav-links a {
+  display: block; padding: 7px 13px; font-size: 14px; font-weight: 500;
+  color: var(--text-2); text-decoration: none; border-radius: 8px;
+  transition: color .15s, background .15s; white-space: nowrap;
+}
+.nav-links a:hover { color: var(--sg-600); background: var(--sg-50); }
+.nav-end { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--font); font-size: 14px; font-weight: 600;
+  text-decoration: none; cursor: pointer; border: none;
+  border-radius: 10px; transition: all .2s cubic-bezier(.25,.8,.25,1);
+  white-space: nowrap; letter-spacing: -0.01em;
+}
+.btn-sm  { padding: 8px 17px; font-size: 13px; }
+.btn-md  { padding: 10px 22px; }
+.btn-lg  { padding: 14px 28px; font-size: 15px; border-radius: 12px; }
+.btn-ghost { background: transparent; color: var(--text-2); border: 1px solid var(--border); }
+.btn-ghost:hover { background: var(--n-50); color: var(--text-1); border-color: var(--border); }
+.btn-pri { background: var(--sg-600); color: white; box-shadow: 0 2px 10px rgba(79,45,196,.3); }
+.btn-pri:hover { background: var(--sg-700); transform: translateY(-1px); box-shadow: var(--s-purple); }
+.btn-aws { background: var(--aws); color: var(--dark-1); font-weight: 700; box-shadow: 0 2px 12px rgba(255,153,0,.3); }
+.btn-aws:hover { background: var(--aws-d); transform: translateY(-1px); box-shadow: var(--s-aws); }
+.btn-aws-out { background: transparent; color: var(--aws); border: 1.5px solid rgba(255,153,0,.5); }
+.btn-aws-out:hover { background: var(--aws-50); border-color: var(--aws); }
+.btn-white { background: white; color: var(--sg-700); font-weight: 700; box-shadow: var(--s-md); }
+.btn-white:hover { box-shadow: var(--s-lg); transform: translateY(-2px); }
+.btn-out-white { background: transparent; color: white; border: 1.5px solid rgba(255,255,255,.4); }
+.btn-out-white:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.8); }
+
+/* ══ SECTION BASE ══ */
+section { padding: var(--sec-pad); }
+.inner { max-width: var(--max-w); margin: 0 auto; }
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11.5px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .11em; color: var(--sg-500); margin-bottom: 18px;
+}
+.eyebrow::before { content: ''; width: 18px; height: 2px; background: var(--sg-400); border-radius: 2px; }
+.eyebrow-aws { color: var(--aws); }
+.eyebrow-aws::before { background: var(--aws); }
+.sec-h {
+  font-size: clamp(28px, 3.4vw, 44px); font-weight: 800;
+  letter-spacing: -0.032em; color: var(--text-1); line-height: 1.1; margin-bottom: 18px;
+}
+.sec-sub { font-size: 17px; font-weight: 400; color: var(--text-2); line-height: 1.7; max-width: 580px; margin-bottom: 64px; }
+.sec-sub-wide { max-width: 760px; }
+
+/* ══ HERO ══ */
+.hero {
+  background: linear-gradient(135deg, var(--dark-1) 0%, var(--dark-3) 45%, #0d1b35 75%, #1a0960 100%);
+  min-height: 100vh; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 100px 7% 80px;
+}
+/* Animated grid */
+.hero::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,153,0,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,153,0,.06) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 85% 80% at 50% 40%, black, transparent);
+  animation: grid-pulse 8s ease-in-out infinite;
+}
+@keyframes grid-pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+/* Radial atmosphere glows */
+.hero::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 65% 65% at 100% 20%, rgba(255,153,0,.08) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 55% at 0% 80%, rgba(79,45,196,.2) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 60% 50%, rgba(107,61,232,.08) 0%, transparent 50%);
+}
+#hero-canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: .6; }
+
+.hero-inner {
+  max-width: var(--max-w); margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center; position: relative; z-index: 1;
+}
+
+/* Left: text */
+.hero-l {}
+.hero-partner-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: rgba(255,153,0,.1); border: 1px solid rgba(255,153,0,.3);
+  padding: 6px 16px 6px 10px; border-radius: 100px;
+  font-size: 12px; font-weight: 700; color: var(--aws-l);
+  letter-spacing: .02em; margin-bottom: 32px;
+  animation: badge-drop .9s .1s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes badge-drop { from{opacity:0;transform:translateY(-16px) scale(.9)} to{opacity:1;transform:none} }
+.hero-badge-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--aws);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+.hero h1 {
+  font-size: clamp(38px, 4.8vw, 64px);
+  font-weight: 900; letter-spacing: -0.04em; line-height: 1.04;
+  color: white; margin-bottom: 28px;
+}
+.hero h1 .hl-purple {
+  background: linear-gradient(135deg, var(--sg-400) 0%, var(--sg-300) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; position: relative;
+}
+/* Glitch effect */
+.hero h1 .hl-purple::before,
+.hero h1 .hl-purple::after {
+  content: attr(data-text); position: absolute; top: 0; left: 0;
+  background: linear-gradient(135deg, var(--sg-400) 0%, var(--sg-300) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero h1 .hl-purple::before { animation: glitch-a 7s infinite; clip-path: polygon(0 0,100% 0,100% 35%,0 35%); }
+.hero h1 .hl-purple::after  { animation: glitch-b 7s infinite; clip-path: polygon(0 65%,100% 65%,100% 100%,0 100%); }
+@keyframes glitch-a {
+  0%,90%,100%{transform:translate(0);opacity:0}
+  92%{transform:translate(-5px,-2px);opacity:.6;filter:hue-rotate(90deg)}
+  94%{transform:translate(3px,1px);opacity:.4} 96%{transform:translate(-2px,0);opacity:.7}
+}
+@keyframes glitch-b {
+  0%,90%,100%{transform:translate(0);opacity:0}
+  93%{transform:translate(5px,2px);opacity:.5;filter:hue-rotate(-80deg)}
+  95%{transform:translate(-3px,-1px);opacity:.3} 97%{transform:translate(2px,1px);opacity:.6}
+}
+.hero h1 .hl-aws {
+  background: linear-gradient(135deg, var(--aws) 0%, var(--aws-l) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-desc {
+  font-size: 18px; color: rgba(255,255,255,.7); line-height: 1.72; max-width: 500px; margin-bottom: 44px;
+}
+.hero-desc strong { color: rgba(255,255,255,.95); font-weight: 600; }
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 60px; }
+.hero-social {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.hero-social-item {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12.5px; color: rgba(255,255,255,.45); font-weight: 500;
+}
+.hero-social-item strong { color: rgba(255,255,255,.75); }
+.hero-sep { width: 1px; height: 20px; background: rgba(255,255,255,.12); }
+
+/* Right: hero visual card */
+.hero-r { position: relative; }
+
+.hero-visual {
+  border-radius: 24px; overflow: hidden; position: relative;
+  box-shadow: 0 32px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.07);
+  animation: card-float 7s ease-in-out infinite;
+}
+@keyframes card-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+.hero-visual img {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+  filter: brightness(.85) saturate(1.2);
+}
+.hero-visual-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(5,11,26,.75) 100%);
+}
+
+/* Stats overlay strip at bottom of card */
+.hero-card-stats {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+  background: rgba(5,11,26,.85); backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255,255,255,.1);
+  padding: 18px 24px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px;
+}
+.hcs-item { text-align: center; }
+.hcs-n {
+  font-size: 22px; font-weight: 900; letter-spacing: -0.04em;
+  background: linear-gradient(135deg, var(--aws) 0%, var(--aws-l) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  line-height: 1; margin-bottom: 5px;
+}
+.hcs-l { font-size: 11px; color: rgba(255,255,255,.5); font-weight: 500; line-height: 1.35; }
+
+/* Floating badge top-right of image */
+.hero-cert-pill {
+  position: absolute; top: 20px; right: 20px; z-index: 3;
+  background: rgba(255,255,255,.95); border-radius: 12px;
+  padding: 10px 14px; display: flex; align-items: center; gap: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+}
+.hero-cert-pill img { height: 22px; width: auto; }
+.hero-cert-text { font-size: 11px; font-weight: 700; color: var(--n-800); line-height: 1.3; }
+
+/* Floating connection card bottom-left */
+.hero-conn-pill {
+  position: absolute; bottom: 90px; left: -28px; z-index: 3;
+  background: rgba(10,22,40,.92); backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,153,0,.3); border-radius: 14px;
+  padding: 14px 18px; min-width: 200px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.4);
+  animation: card-float 9s 1s ease-in-out infinite;
+}
+.hcp-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--aws); margin-bottom: 8px; }
+.hcp-row { display: flex; align-items: center; gap: 7px; margin-bottom: 5px; }
+.hcp-row:last-child { margin-bottom: 0; }
+.hcp-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.hcp-dot.on  { background: #34d399; }
+.hcp-dot.aws { background: var(--aws); }
+.hcp-dot.sg  { background: var(--sg-400); }
+.hcp-row-text { font-size: 12px; color: rgba(255,255,255,.8); font-weight: 500; }
+
+/* ══ PROOF BAR ══ */
+.proof-bar {
+  background: white; border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+  padding: 0 7%;
+}
+.proof-bar-inner {
+  max-width: var(--max-w); margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 72px; gap: 32px; flex-wrap: wrap;
+}
+.proof-lbl { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-3); white-space: nowrap; }
+.proof-logos { display: flex; align-items: center; gap: 32px; flex-wrap: wrap; }
+.proof-logo-item {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 13px; font-weight: 700; color: var(--text-2);
+  opacity: .65; transition: opacity .2s;
+}
+.proof-logo-item:hover { opacity: 1; }
+.proof-logo-item .logo-icon { font-size: 18px; }
+.proof-sep { width: 1px; height: 28px; background: var(--border); }
+.proof-cert {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 700; color: var(--sg-600);
+  background: var(--sg-50); border: 1px solid var(--sg-200);
+  padding: 6px 13px; border-radius: 100px;
+}
+
+/* ══ WHAT IS AMAZON CONNECT ══ */
+.intro { background: var(--bg); }
+.intro-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 88px; align-items: center;
+}
+.intro-image-wrap {
+  position: relative; border-radius: 24px; overflow: hidden;
+  box-shadow: var(--s-lg);
+}
+.intro-image-wrap img {
+  width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+  transition: transform .5s ease;
+}
+.intro-image-wrap:hover img { transform: scale(1.03); }
+/* AWS partner badge on image */
+.aws-partner-badge {
+  position: absolute; bottom: 24px; left: 24px;
+  background: white; border-radius: 14px; padding: 14px 18px;
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 12px 32px rgba(0,0,0,.15);
+}
+.apb-icon { font-size: 28px; }
+.apb-text .apb-t { font-size: 12px; font-weight: 800; color: var(--n-800); }
+.apb-text .apb-s { font-size: 11px; color: var(--text-3); font-weight: 500; }
+/* Orange accent line on image */
+.intro-image-wrap::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--aws), var(--aws-l));
+  z-index: 1;
+}
+
+.intro-text {}
+.intro-text h2 { font-size: clamp(26px, 3vw, 38px); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 20px; line-height: 1.12; }
+.intro-text h2 span { color: var(--sg-600); }
+.intro-text > p { font-size: 16px; color: var(--text-2); line-height: 1.75; margin-bottom: 18px; }
+.intro-highlights { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+.intro-hi {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 20px; background: var(--bg-2); border-radius: 14px;
+  border: 1px solid var(--border); border-left: 3px solid var(--aws);
+  transition: border-color .2s, box-shadow .2s;
+}
+.intro-hi:hover { border-color: var(--aws); border-left-color: var(--aws); box-shadow: var(--s-sm); }
+.intro-hi-ico { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+.intro-hi h4 { font-size: 14px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 3px; }
+.intro-hi p  { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+
+/* ══ SERVICES ══ */
+.services { background: var(--bg-2); }
+.services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px;
+}
+.svc-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: var(--r-card); padding: 38px 32px;
+  position: relative; overflow: hidden;
+  transition: box-shadow .25s, border-color .25s;
+  will-change: transform;
+}
+.svc-card:hover { box-shadow: var(--s-md); border-color: rgba(255,153,0,.3); }
+/* Top accent line */
+.svc-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--aws), var(--aws-l));
+  transform: scaleX(0); transform-origin: left; transition: transform .35s ease;
+}
+.svc-card:hover::before { transform: scaleX(1); }
+/* Shimmer */
+.svc-card::after {
+  content: ''; position: absolute; top: -60%; left: -120%; width: 55%; height: 220%;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.5) 50%, transparent 70%);
+  transform: skewX(-18deg); transition: left .6s ease; pointer-events: none;
+}
+.svc-card:hover::after { left: 150%; }
+.svc-ico {
+  width: 52px; height: 52px; border-radius: 14px; margin-bottom: 22px;
+  display: flex; align-items: center; justify-content: center; font-size: 24px;
+  background: var(--aws-50); border: 1px solid rgba(255,153,0,.2);
+  transition: transform .2s, background .2s;
+}
+.svc-card:hover .svc-ico { transform: scale(1.08) rotate(-3deg); background: rgba(255,153,0,.12); }
+.svc-card h3 { font-size: 17px; font-weight: 800; letter-spacing: -0.022em; margin-bottom: 10px; color: var(--text-1); }
+.svc-card p  { font-size: 14px; color: var(--text-2); line-height: 1.65; margin-bottom: 18px; }
+.svc-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.svc-tag {
+  font-size: 11.5px; font-weight: 600; padding: 4px 10px; border-radius: 100px;
+  background: var(--sg-50); color: var(--sg-600); border: 1px solid var(--sg-200);
+}
+
+/* ══ CAPABILITIES ══ */
+.capabilities { background: var(--dark-1); position: relative; overflow: hidden; }
+.capabilities::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,153,0,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,153,0,.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
+}
+.capabilities::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 60% at 0% 40%, rgba(79,45,196,.18) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 100% 60%, rgba(255,153,0,.1) 0%, transparent 50%);
+}
+/* Scan line */
+.cap-scan {
+  position: absolute; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,153,0,.0) 20%, rgba(255,153,0,.7) 50%, rgba(139,99,240,.6) 70%, transparent 100%);
+  animation: scan 7s ease-in-out infinite; pointer-events: none; z-index: 2; filter: blur(1px);
+}
+@keyframes scan { 0%{top:0%;opacity:0} 8%{opacity:1} 92%{opacity:.7} 100%{top:100%;opacity:0} }
+
+.capabilities .eyebrow { color: var(--aws); }
+.capabilities .eyebrow::before { background: var(--aws); }
+.capabilities .sec-h { color: white; }
+.capabilities .sec-sub { color: rgba(255,255,255,.6); }
+
+.cap-tabs {
+  display: flex; gap: 6px; margin-bottom: 48px;
+  background: rgba(255,255,255,.06); padding: 7px; border-radius: 16px; width: fit-content;
+}
+.cap-tab {
+  padding: 11px 22px; border-radius: 12px; font-family: var(--font);
+  font-size: 14px; font-weight: 600; cursor: pointer; border: none;
+  background: transparent; color: rgba(255,255,255,.45);
+  transition: all .22s; white-space: nowrap;
+}
+.cap-tab:hover { color: rgba(255,255,255,.75); background: rgba(255,255,255,.06); }
+.cap-tab.on {
+  background: var(--aws); color: var(--dark-1);
+  box-shadow: 0 4px 16px rgba(255,153,0,.3); font-weight: 700;
+}
+
+.cap-panel { display: none; position: relative; z-index: 1; }
+.cap-panel.on { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; animation: fadeUp .3s ease; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+.cap-info {}
+.cap-info h3 { font-size: 30px; font-weight: 800; letter-spacing: -0.03em; color: white; margin-bottom: 14px; }
+.cap-info > p { font-size: 16px; color: rgba(255,255,255,.65); line-height: 1.72; margin-bottom: 32px; }
+.cap-features { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+.cap-feat {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px; padding: 16px 18px; transition: background .2s;
+}
+.cap-feat:hover { background: rgba(255,255,255,.08); }
+.cap-feat-ico {
+  width: 36px; height: 36px; border-radius: 9px; flex-shrink: 0;
+  background: rgba(255,153,0,.15); border: 1px solid rgba(255,153,0,.25);
+  display: flex; align-items: center; justify-content: center; font-size: 17px;
+}
+.cap-feat h4 { font-size: 13.5px; font-weight: 700; color: white; margin-bottom: 3px; }
+.cap-feat p  { font-size: 12.5px; color: rgba(255,255,255,.5); line-height: 1.5; }
+
+.cap-metrics { display: flex; flex-direction: column; gap: 18px; }
+.cap-metric {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--r-card); padding: 24px 28px;
+  backdrop-filter: blur(8px); transition: background .25s, transform .25s;
+  border-left: 3px solid var(--aws);
+}
+.cap-metric:hover { background: rgba(255,255,255,.09); transform: translateX(5px); }
+.cap-m-n {
+  font-size: 38px; font-weight: 900; letter-spacing: -0.05em; line-height: 1;
+  background: linear-gradient(135deg, var(--aws) 0%, var(--aws-l) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 6px;
+}
+.cap-m-l { font-size: 14px; color: rgba(255,255,255,.55); line-height: 1.45; }
+
+/* ══ JOURNEY FLOW ══ */
+.journey { background: white; }
+.journey-flow {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+  position: relative; margin-top: 20px;
+}
+/* Connector line between steps */
+.journey-flow::before {
+  content: ''; position: absolute;
+  top: 36px; left: 10%; right: 10%; height: 2px;
+  background: linear-gradient(90deg, var(--sg-200), var(--aws-l), var(--aws), var(--aws-l), var(--sg-200));
+  z-index: 0;
+}
+.journey-step {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  padding: 0 12px; position: relative; z-index: 1;
+  opacity: 0; transform: translateY(24px);
+  transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1);
+}
+.journey-step.in { opacity: 1; transform: translateY(0); }
+.js-num {
+  width: 74px; height: 74px; border-radius: 50%; flex-shrink: 0;
+  background: white; border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center; font-size: 28px;
+  margin-bottom: 22px; position: relative;
+  box-shadow: var(--s-sm);
+  transition: border-color .3s, box-shadow .3s, transform .3s;
+}
+.journey-step:hover .js-num {
+  border-color: var(--aws); box-shadow: 0 0 0 6px rgba(255,153,0,.1), var(--s-sm);
+  transform: scale(1.08);
+}
+.js-step-lbl {
+  position: absolute; bottom: -2px; right: -2px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--aws); color: var(--dark-1);
+  font-size: 10px; font-weight: 900; display: flex; align-items: center; justify-content: center;
+}
+.journey-step h4 { font-size: 14px; font-weight: 800; letter-spacing: -0.015em; margin-bottom: 8px; color: var(--text-1); }
+.journey-step p  { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+.js-tag {
+  display: inline-block; margin-top: 10px; padding: 3px 9px; border-radius: 6px;
+  font-size: 11px; font-weight: 700;
+  background: var(--aws-50); color: var(--aws-d); border: 1px solid rgba(255,153,0,.25);
+}
+
+/* ══ WHY SYSGRATE ══ */
+.why-sg { background: var(--bg-2); }
+.why-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 88px; align-items: start; }
+.why-l {}
+.why-l .sec-sub { margin-bottom: 36px; }
+.why-benefits { display: flex; flex-direction: column; gap: 22px; }
+.why-b { display: flex; gap: 16px; align-items: flex-start; }
+.why-b-ico {
+  width: 46px; height: 46px; flex-shrink: 0; border-radius: 12px;
+  background: white; border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center; font-size: 20px;
+  transition: background .2s, transform .2s, border-color .2s;
+}
+.why-b:hover .why-b-ico { background: var(--aws-50); border-color: rgba(255,153,0,.3); transform: scale(1.08) rotate(-3deg); }
+.why-b h4 { font-size: 14.5px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 4px; }
+.why-b p  { font-size: 13.5px; color: var(--text-2); line-height: 1.55; }
+
+/* Comparison table */
+.cmp-card {
+  background: white; border: 1px solid var(--border);
+  border-radius: 22px; overflow: hidden; box-shadow: var(--s-sm);
+}
+.cmp-card-hd {
+  background: linear-gradient(135deg, var(--dark-3) 0%, var(--sg-800) 100%);
+  padding: 22px 28px; display: flex; align-items: center; gap: 14px;
+}
+.cmp-card-hd h4 { font-size: 15px; font-weight: 800; color: white; letter-spacing: -0.02em; }
+.cmp-card-hd p  { font-size: 12.5px; color: rgba(255,255,255,.5); margin-top: 2px; }
+.cmp-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.cmp-table thead th {
+  padding: 13px 20px; text-align: left; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .08em; color: var(--text-3);
+  background: var(--bg-2); border-bottom: 1px solid var(--border);
+}
+.cmp-table thead th.sg-h { color: var(--sg-600); background: var(--sg-50); }
+.cmp-table thead th.win-h { color: #15803d; background: #f0fdf4; }
+.cmp-table tbody td {
+  padding: 13px 20px; border-bottom: 1px solid var(--border); color: var(--text-2); vertical-align: middle;
+}
+.cmp-table tbody tr:last-child td { border-bottom: none; }
+.cmp-table tbody tr:hover td { background: var(--n-50); }
+.cmp-table td.cat  { font-weight: 600; color: var(--text-1); }
+.cmp-table td.sg   { color: var(--text-1); font-weight: 500; background: rgba(107,61,232,.018); }
+.cmp-table td.win  { font-weight: 700; color: #15803d; background: rgba(21,128,61,.03); }
+
+/* ══ OUTCOMES ══ */
+.outcomes {
+  background: linear-gradient(135deg, var(--sg-800) 0%, var(--dark-1) 60%, var(--dark-3) 100%);
+  position: relative; overflow: hidden;
+}
+.outcomes::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 50% 60% at 10% 50%, rgba(255,153,0,.1) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 50% at 90% 20%, rgba(107,61,232,.2) 0%, transparent 55%);
+}
+.outcomes .eyebrow { color: var(--aws); }
+.outcomes .eyebrow::before { background: var(--aws); }
+.outcomes .sec-h  { color: white; }
+.outcomes .sec-sub { color: rgba(255,255,255,.55); }
+
+.outcomes-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+  position: relative; z-index: 1;
+}
+.outcome-card {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--r-card); padding: 32px 26px; text-align: center;
+  backdrop-filter: blur(8px); transition: background .25s, transform .25s;
+  border-bottom: 3px solid var(--aws);
+}
+.outcome-card:hover { background: rgba(255,255,255,.1); transform: translateY(-5px); }
+.oc-ico { font-size: 32px; margin-bottom: 16px; }
+.oc-n {
+  font-size: 42px; font-weight: 900; letter-spacing: -0.05em; line-height: 1;
+  background: linear-gradient(135deg, var(--aws) 0%, var(--aws-l) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  margin-bottom: 8px;
+}
+.oc-l { font-size: 13.5px; color: rgba(255,255,255,.6); line-height: 1.45; font-weight: 500; }
+
+/* ══ SOLUTIONS TOOLS ══ */
+.solutions { background: white; }
+.solutions-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+.sol-card {
+  background: var(--bg-2); border: 1px solid var(--border);
+  border-radius: var(--r-card); padding: 36px; display: flex; gap: 20px; align-items: flex-start;
+  transition: box-shadow .25s, border-color .25s;
+}
+.sol-card:hover { box-shadow: var(--s-md); border-color: rgba(255,153,0,.3); }
+.sol-ico {
+  width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+  background: white; border: 1.5px solid var(--border);
+  display: flex; align-items: center; justify-content: center; font-size: 24px;
+  box-shadow: var(--s-sm); transition: transform .2s;
+}
+.sol-card:hover .sol-ico { transform: scale(1.1); }
+.sol-card h3 { font-size: 16px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+.sol-card p  { font-size: 13.5px; color: var(--text-2); line-height: 1.6; margin-bottom: 14px; }
+.sol-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.sol-chip {
+  font-size: 11.5px; font-weight: 600; padding: 3px 9px; border-radius: 100px;
+  background: var(--sg-50); color: var(--sg-600); border: 1px solid var(--sg-200);
+}
+
+/* ══ INTEGRATIONS ══ */
+.integrations { background: var(--bg-2); }
+.int-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px;
+}
+.int-card {
+  background: white; border: 1px solid var(--border); border-radius: 16px;
+  padding: 28px 22px; text-align: center;
+  transition: box-shadow .2s, transform .2s, border-color .2s;
+}
+.int-card:hover { box-shadow: var(--s-sm); transform: translateY(-4px); border-color: var(--sg-300); }
+.int-ico { font-size: 32px; margin-bottom: 12px; }
+.int-card h4 { font-size: 13.5px; font-weight: 700; letter-spacing: -0.015em; margin-bottom: 5px; }
+.int-card p  { font-size: 12px; color: var(--text-3); line-height: 1.45; }
+
+/* ══ CTA SECTION ══ */
+.final-cta {
+  background: linear-gradient(130deg, var(--aws-d) 0%, #c97600 30%, var(--dark-2) 65%, var(--sg-900) 100%);
+  text-align: center; position: relative; overflow: hidden; padding: var(--sec-pad);
+}
+.final-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 15% 50%, rgba(255,255,255,.06) 0%, transparent 50%),
+    radial-gradient(circle at 85% 20%, rgba(79,45,196,.3) 0%, transparent 50%);
+  pointer-events: none;
+}
+/* Animated conic ring */
+.cta-ring {
+  position: absolute; top: 50%; left: 50%; width: 600px; height: 600px;
+  transform: translate(-50%,-50%);
+  border-radius: 50%; pointer-events: none;
+  background: conic-gradient(from var(--ra,0deg), rgba(255,153,0,.15), transparent, rgba(79,45,196,.15), transparent, rgba(255,153,0,.15));
+  animation: ring-spin 18s linear infinite;
+}
+@property --ra { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+@keyframes ring-spin { to { --ra: 360deg; } }
+.fc-inner { position: relative; z-index: 1; max-width: 740px; margin: 0 auto; }
+.fc-inner h2 {
+  font-size: clamp(32px, 4.4vw, 54px); font-weight: 900; letter-spacing: -0.04em;
+  color: white; margin-bottom: 20px; line-height: 1.07;
+  text-shadow: 0 0 60px rgba(255,153,0,.3);
+}
+.fc-inner p { font-size: 17px; color: rgba(255,255,255,.7); line-height: 1.7; margin-bottom: 44px; }
+.fc-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.fc-trust {
+  margin-top: 40px; display: flex; align-items: center; justify-content: center;
+  gap: 28px; flex-wrap: wrap;
+}
+.fc-trust-item {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 12.5px; color: rgba(255,255,255,.55); font-weight: 500;
+}
+.fc-trust-item::before { content: '✓'; color: var(--aws-l); font-weight: 900; font-size: 13px; }
+
+/* ══ FOOTER ══ */
+footer { background: var(--dark-1); padding: 72px 7% 40px; }
+.ft-grid {
+  max-width: var(--max-w); margin: 0 auto;
+  display: grid; grid-template-columns: 1.7fr 1fr 1fr 1fr; gap: 52px; margin-bottom: 48px;
+}
+.ft-logo-wrap { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-bottom: 14px; }
+.ft-logo-wrap img { height: 28px; filter: brightness(0) invert(1); opacity: .75; }
+.ft-logo-fb { font-size: 17px; font-weight: 800; color: white; letter-spacing: -0.03em; }
+.ft-tagline { font-size: 13.5px; color: var(--n-500); line-height: 1.65; max-width: 250px; margin-bottom: 22px; }
+.ft-aws-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(255,153,0,.1); border: 1px solid rgba(255,153,0,.25);
+  color: var(--aws-l); font-size: 11.5px; font-weight: 700;
+  padding: 5px 12px; border-radius: 7px;
+}
+.ft-col h5 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .09em; color: var(--n-300); margin-bottom: 18px; }
+.ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+.ft-col a { font-size: 13.5px; color: var(--n-500); text-decoration: none; transition: color .15s; }
+.ft-col a:hover { color: var(--n-200); }
+.ft-bottom {
+  max-width: var(--max-w); margin: 0 auto; padding-top: 24px;
+  border-top: 1px solid var(--n-800);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 12px; font-size: 12.5px; color: var(--n-600);
+}
+.ft-bottom a { color: var(--n-600); text-decoration: none; transition: color .15s; }
+.ft-bottom a:hover { color: var(--n-400); }
+.ft-links { display: flex; gap: 20px; }
+
+/* ══ SCROLL REVEAL ══ */
+.reveal {
+  opacity: 0; transform: translateY(28px) scale(.98);
+  transition: opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1);
+}
+.reveal.in { opacity: 1; transform: translateY(0) scale(1); }
+.d1{transition-delay:.08s} .d2{transition-delay:.16s} .d3{transition-delay:.24s}
+.d4{transition-delay:.32s} .d5{transition-delay:.40s}
+
+/* chip spring-in */
+.chip-anim {
+  opacity: 0; transform: scale(.8) translateY(10px);
+  transition: opacity .35s cubic-bezier(.34,1.56,.64,1), transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+.chip-anim.sprung { opacity: 1; transform: scale(1) translateY(0); }
+
+/* counter */
+.count-num { opacity: 0; }
+.count-num.counted { opacity: 1; animation: cnt-pop .5s cubic-bezier(.34,1.56,.64,1) forwards; }
+@keyframes cnt-pop { from{transform:scale(.75) translateY(8px)} to{transform:scale(1) translateY(0)} }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 1100px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 56px; }
+  .hero-r { max-width: 600px; margin: 0 auto; }
+  .intro-grid { grid-template-columns: 1fr; gap: 52px; }
+  .why-grid { grid-template-columns: 1fr; gap: 52px; }
+  .cap-panel.on { grid-template-columns: 1fr; gap: 40px; }
+  .ft-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .outcomes-grid { grid-template-columns: repeat(2, 1fr); }
+  .journey-flow { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .journey-flow::before { display: none; }
+}
+@media (max-width: 768px) {
+  :root { --sec-pad: 72px 5%; }
+  nav .nav-links { display: none; }
+  .services-grid { grid-template-columns: 1fr; }
+  .solutions-grid { grid-template-columns: 1fr; }
+  .int-grid { grid-template-columns: 1fr 1fr; }
+  .outcomes-grid { grid-template-columns: 1fr 1fr; }
+  .journey-flow { grid-template-columns: 1fr; }
+  .cap-tabs { overflow-x: auto; }
+  .hero-conn-pill { display: none; }
+  .proof-bar-inner { height: auto; padding: 16px 0; flex-wrap: wrap; gap: 16px; }
+  .ft-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .hero h1 { font-size: 36px; }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .int-grid { grid-template-columns: 1fr 1fr; }
+  .outcomes-grid { grid-template-columns: 1fr; }
+}
+
+/* ══ CREDENTIALS / BADGES SECTION ══ */
+.credentials {
+  background: linear-gradient(180deg, var(--dark-2) 0%, #080f20 100%);
+  padding: var(--sec-pad); position: relative; overflow: hidden;
+}
+.credentials::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255,153,0,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,153,0,.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black, transparent);
+  animation: grid-pulse 10s ease-in-out infinite;
+}
+.credentials::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 40% 50% at 5% 60%, rgba(79,45,196,.14) 0%, transparent 55%),
+    radial-gradient(ellipse 35% 45% at 95% 40%, rgba(255,153,0,.09) 0%, transparent 55%);
+}
+
+/* Section header */
+.cred-header {
+  text-align: center; margin-bottom: 52px; position: relative; z-index: 1;
+}
+.cred-header .eyebrow { justify-content: center; }
+.cred-header h2 {
+  font-size: clamp(26px, 3vw, 40px); font-weight: 800; letter-spacing: -0.032em;
+  color: white; line-height: 1.1; margin-bottom: 14px;
+}
+.cred-header p {
+  font-size: 16px; color: rgba(255,255,255,.5); max-width: 520px;
+  margin: 0 auto; line-height: 1.65;
+}
+
+/* Full banner image */
+.cred-banner-wrap {
+  position: relative; z-index: 1; margin-bottom: 44px;
+  border-radius: 22px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,.1);
+  box-shadow: 0 12px 48px rgba(0,0,0,.5), 0 0 0 1px rgba(255,153,0,.08);
+  transition: box-shadow .35s, border-color .35s;
+}
+.cred-banner-wrap:hover {
+  box-shadow: 0 20px 64px rgba(0,0,0,.55), 0 0 0 1px rgba(255,153,0,.28);
+  border-color: rgba(255,153,0,.28);
+}
+.cred-banner-inner {
+  display: block; width: 100%;
+  transition: transform .6s cubic-gradient(.25,.8,.25,1);
+}
+.cred-banner-wrap:hover .cred-banner-inner { transform: scale(1.012); }
+.cred-banner-img {
+  width: 100%; display: block; object-fit: cover;
+  filter: brightness(1.08) saturate(1.15) contrast(1.05);
+}
+/* Subtle gradient vignette over image */
+.cred-banner-overlay {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(8,15,32,.15) 0%, transparent 30%, transparent 70%, rgba(8,15,32,.3) 100%);
+}
+/* Sheen sweep on hover */
+.cred-banner-wrap::after {
+  content: ''; position: absolute; top: 0; left: -120%; width: 55%; height: 100%;
+  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.07) 50%, transparent 70%);
+  transform: skewX(-18deg); transition: left .7s ease; pointer-events: none; z-index: 2;
+}
+.cred-banner-wrap:hover::after { left: 150%; }
+
+/* Badge cards grid */
+.cred-cards {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 16px; margin-bottom: 40px; position: relative; z-index: 1;
+}
+.cred-card {
+  background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 18px; padding: 26px 20px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+  position: relative; overflow: hidden;
+  transition: background .25s, border-color .25s, transform .25s, box-shadow .25s;
+}
+/* top accent bar */
+.cred-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2.5px;
+  border-radius: 2px 2px 0 0;
+  transition: opacity .3s;
+}
+.cred-card.aws-card::before   { background: linear-gradient(90deg, var(--aws), var(--aws-l)); opacity: 1; }
+.cred-card.zoom-card::before  { background: linear-gradient(90deg, #0B5CFF, #60a5fa); opacity: 0; }
+.cred-card.plat-card::before  { background: linear-gradient(90deg, #D4AF37, #FFD700, #D4AF37); opacity: 1; }
+.cred-card:hover::before { opacity: 1 !important; }
+
+.cred-card:hover {
+  background: rgba(255,255,255,.09);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.35);
+}
+.cred-card.plat-card {
+  background: rgba(212,175,55,.07); border-color: rgba(212,175,55,.22);
+}
+.cred-card.plat-card:hover { border-color: rgba(212,175,55,.5); box-shadow: 0 16px 40px rgba(212,175,55,.12); }
+
+.cc-ico  { font-size: 28px; line-height: 1; }
+.cc-name { font-size: 13.5px; font-weight: 800; color: white; letter-spacing: -0.015em; line-height: 1.3; }
+.cc-desc { font-size: 11.5px; color: rgba(255,255,255,.45); line-height: 1.5; flex: 1; }
+.cc-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .07em;
+  padding: 4px 11px; border-radius: 100px; margin-top: 4px;
+}
+.pill-aws      { background: rgba(255,153,0,.15); color: var(--aws-l); border: 1px solid rgba(255,153,0,.35); }
+.pill-zoom     { background: rgba(11,92,255,.15);  color: #93c5fd;     border: 1px solid rgba(11,92,255,.3); }
+.pill-platinum {
+  background: linear-gradient(135deg, rgba(212,175,55,.25), rgba(255,215,0,.1));
+  color: #fde68a; border: 1px solid rgba(212,175,55,.5);
+}
+
+/* Trust bar */
+.cred-trust-bar {
+  position: relative; z-index: 1;
+  display: flex; align-items: center; justify-content: center; gap: 0;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px; overflow: hidden;
+  flex-wrap: wrap;
+}
+.ctb-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 20px 32px; flex: 1; min-width: 160px;
+  border-right: 1px solid rgba(255,255,255,.08);
+  transition: background .2s;
+}
+.ctb-item:last-child { border-right: none; }
+.ctb-item:hover { background: rgba(255,255,255,.05); }
+.ctb-ico {
+  width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+  background: rgba(255,153,0,.12); border: 1px solid rgba(255,153,0,.2);
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.ctb-text-title { font-size: 13px; font-weight: 700; color: white; margin-bottom: 2px; }
+.ctb-text-sub   { font-size: 11.5px; color: rgba(255,255,255,.4); }
+
+</style>
+</head>
+<body>
+<div id="cursor-glow"></div>
+
+<!-- ═══════ ANNOUNCEMENT BAR ═══════ -->
+<div class="annc">
+  <span class="annc-badge">New</span>
+  Sysgrate is now a certified Amazon Connect Service Delivery Partner
+  <a href="#contact">Get Started →</a>
+</div>
+
+<!-- ═══════ NAV ═══════ -->
+<nav id="topnav">
+  <div style="display:flex;align-items:center;gap:14px;">
+    <a href="index.html" class="nav-logo">
+      <img src="https://sysgrate.com/wp-content/uploads/2020/09/output-onlinepngtools.png" alt="Sysgrate"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+      <span class="nav-logo-fb">Sysgrate</span>
+    </a>
+    <div class="nav-divider"></div>
+    <div class="nav-product">
+      <div class="nav-product-dot"></div>
+      Amazon Connect
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#what-is">What Is It</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#capabilities">Capabilities</a></li>
+    <li><a href="#journey">Our Process</a></li>
+    <li><a href="#solutions">Solutions</a></li>
+  </ul>
+  <div class="nav-end">
+    <a href="index.html" class="btn btn-ghost btn-sm">← Back to Home</a>
+    <a href="#contact" class="btn btn-aws btn-md">Book a Discovery Call</a>
+  </div>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero" id="home">
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+
+    <!-- Left -->
+    <div class="hero-l">
+      <div class="hero-partner-badge">
+        <div class="hero-badge-dot"></div>
+        AWS Service Delivery Partner · Amazon Connect
+      </div>
+
+      <h1>
+        Cloud Contact Centers<br />
+        Powered by<br />
+        <span class="hl-aws">Amazon Connect</span><br />
+        <span class="hl-purple" data-text="Built by Sysgrate">Built by Sysgrate</span>
+      </h1>
+
+      <p class="hero-desc">
+        We deploy, migrate, and manage enterprise contact centers on Amazon Connect —
+        with <strong>AI-powered CX</strong>, omnichannel routing, and full CRM integration
+        that transforms every customer interaction.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-aws btn-lg">🚀 Book a Discovery Call</a>
+        <a href="#services" class="btn btn-out-white btn-lg">Explore Services</a>
+      </div>
+
+      <div class="hero-social">
+        <div class="hero-social-item">
+          <strong>AWS Certified</strong> Service Delivery Partner
+        </div>
+        <div class="hero-sep"></div>
+        <div class="hero-social-item">
+          <strong>24/7</strong> Managed Support
+        </div>
+        <div class="hero-sep"></div>
+        <div class="hero-social-item">
+          <strong>50+</strong> Deployments Delivered
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Visual card -->
+    <div class="hero-r reveal d2">
+      <div class="hero-visual">
+        <img
+          src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&auto=format&fit=crop&q=80"
+          alt="Contact center team using Amazon Connect"
+          onerror="this.src='https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&auto=format&fit=crop&q=80'"
+        />
+        <div class="hero-visual-overlay"></div>
+        <div class="hero-cert-pill">
+          <div style="background:#FF9900;border-radius:6px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">☁️</div>
+          <div class="hero-cert-text">AWS Certified<br/>Select Partner</div>
+        </div>
+        <div class="hero-card-stats">
+          <div class="hcs-item">
+            <div class="hcs-n count-num" data-val="40">0%</div>
+            <div class="hcs-l">Reduction in<br/>Handle Time</div>
+          </div>
+          <div class="hcs-item">
+            <div class="hcs-n count-num" data-val="99.99">0%</div>
+            <div class="hcs-l">Uptime<br/>SLA</div>
+          </div>
+          <div class="hcs-item">
+            <div class="hcs-n count-num" data-val="3">0×</div>
+            <div class="hcs-l">Faster<br/>Deployment</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating connection status card -->
+      <div class="hero-conn-pill">
+        <div class="hcp-label">Live Connections</div>
+        <div class="hcp-row"><div class="hcp-dot on"></div><div class="hcp-row-text">Amazon Connect Active</div></div>
+        <div class="hcp-row"><div class="hcp-dot aws"></div><div class="hcp-row-text">Contact Lens Enabled</div></div>
+        <div class="hcp-row"><div class="hcp-dot sg"></div><div class="hcp-row-text">CRM Sync · Live</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ PROOF BAR ═══════ -->
+<div class="proof-bar">
+  <div class="proof-bar-inner">
+    <div class="proof-lbl">Partner Ecosystem</div>
+    <div class="proof-logos">
+      <div class="proof-logo-item"><span class="logo-icon">☁️</span> Amazon Web Services</div>
+      <div class="proof-sep"></div>
+      <div class="proof-logo-item"><span class="logo-icon">📞</span> Amazon Connect</div>
+      <div class="proof-sep"></div>
+      <div class="proof-logo-item"><span class="logo-icon">🔍</span> Contact Lens</div>
+      <div class="proof-sep"></div>
+      <div class="proof-logo-item"><span class="logo-icon">🤖</span> Amazon Lex</div>
+      <div class="proof-sep"></div>
+      <div class="proof-logo-item"><span class="logo-icon">📊</span> QuickSight</div>
+    </div>
+    <div class="proof-cert">✦ AWS Service Delivery Partner</div>
+  </div>
+</div>
+
+<!-- ═══════ WHAT IS AMAZON CONNECT ═══════ -->
+<section class="intro" id="what-is">
+  <div class="inner">
+    <div class="intro-grid">
+
+      <!-- Image -->
+      <div class="intro-image-wrap reveal">
+        <img
+          src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&auto=format&fit=crop&q=80"
+          alt="Cloud contact center technology overview"
+          onerror="this.src='https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80'"
+        />
+        <div class="aws-partner-badge">
+          <div class="apb-icon">☁️</div>
+          <div class="apb-text">
+            <div class="apb-t">Amazon Connect</div>
+            <div class="apb-s">AWS Cloud Contact Center</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="intro-text reveal d2">
+        <div class="eyebrow eyebrow-aws">What is Amazon Connect</div>
+        <h2>The Cloud Contact Center Built for <span>Enterprise Scale</span></h2>
+        <p>Amazon Connect is AWS's omnichannel cloud contact center — built to deliver superior customer experiences at any scale. It combines AI, real-time analytics, and flexible routing in a single, pay-as-you-go platform.</p>
+        <p>Sysgrate is a certified Amazon Connect Service Delivery Partner — meaning we've been validated by AWS for expertise in deploying and managing Amazon Connect solutions across industries.</p>
+
+        <div class="intro-highlights">
+          <div class="intro-hi reveal d1">
+            <div class="intro-hi-ico">🎯</div>
+            <div>
+              <h4>No upfront infrastructure cost</h4>
+              <p>Pure cloud — spin up a fully functional contact center in minutes. Pay only for what you use.</p>
+            </div>
+          </div>
+          <div class="intro-hi reveal d2">
+            <div class="intro-hi-ico">🤖</div>
+            <div>
+              <h4>Native AI & machine learning</h4>
+              <p>Contact Lens, Amazon Lex bots, real-time sentiment analysis, and automated call summaries built in.</p>
+            </div>
+          </div>
+          <div class="intro-hi reveal d3">
+            <div class="intro-hi-ico">🔗</div>
+            <div>
+              <h4>Integrates with everything</h4>
+              <p>Salesforce, HubSpot, Zendesk, ServiceNow — Amazon Connect connects to your entire tech stack.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SERVICES ═══════ -->
+<section class="services" id="services">
+  <div class="inner">
+    <div class="reveal">
+      <div class="eyebrow eyebrow-aws">What We Do</div>
+      <h2 class="sec-h">End-to-End Amazon Connect Services</h2>
+      <p class="sec-sub">From initial assessment to ongoing optimisation — Sysgrate handles every phase of your Amazon Connect journey with certified expertise.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card reveal d1">
+        <div class="svc-ico">🏗️</div>
+        <h3>Consulting & Architecture</h3>
+        <p>We map your current contact center landscape, define your target architecture, and design a deployment plan that fits your exact business — not a generic template.</p>
+        <div class="svc-tags">
+          <span class="svc-tag chip-anim">Current State Assessment</span>
+          <span class="svc-tag chip-anim">Architecture Design</span>
+          <span class="svc-tag chip-anim">TCO Analysis</span>
+        </div>
+      </div>
+      <div class="svc-card reveal d2">
+        <div class="svc-ico">🚀</div>
+        <h3>Migration & Deployment</h3>
+        <p>We migrate from any legacy platform — Genesys, Avaya, Cisco, NICE, Five9 — to Amazon Connect with zero customer experience disruption and 30–50% faster timelines than vendor PS teams.</p>
+        <div class="svc-tags">
+          <span class="svc-tag chip-anim">Legacy Migration</span>
+          <span class="svc-tag chip-anim">IVR Migration Tool</span>
+          <span class="svc-tag chip-anim">Number Porting</span>
+        </div>
+      </div>
+      <div class="svc-card reveal d3">
+        <div class="svc-ico">🤖</div>
+        <h3>AI & Automation Engineering</h3>
+        <p>Implement Amazon Lex conversational bots, Contact Lens for real-time analytics, automated call summaries, and intelligent routing that learns from every interaction.</p>
+        <div class="svc-tags">
+          <span class="svc-tag chip-anim">Amazon Lex Bots</span>
+          <span class="svc-tag chip-anim">Contact Lens AI</span>
+          <span class="svc-tag chip-anim">Auto-Summarisation</span>
+        </div>
+      </div>
+      <div class="svc-card reveal d1">
+        <div class="svc-ico">🔗</div>
+        <h3>CRM & Ecosystem Integration</h3>
+        <p>Deep integrations between Amazon Connect and HubSpot, Salesforce, Zendesk, ServiceNow — delivering screen pops, automatic logging, and unified customer views for every agent.</p>
+        <div class="svc-tags">
+          <span class="svc-tag chip-anim">HubSpot Sync</span>
+          <span class="svc-tag chip-anim">Salesforce CTI</span>
+          <span class="svc-tag chip-anim">Zendesk Integration</span>
+        </div>
+      </div>
+      <div class="svc-card reveal d2">
+        <div class="svc-ico">🛡️</div>
+        <h3>Security Assessment</h3>
+        <p>Our 3-week AWS security assessment identifies compliance gaps across governance, data protection, identity & access management, resilience, and infrastructure security.</p>
+        <div class="svc-tags">
+          <span class="svc-tag chip-anim">GDPR Compliance</span>
+          <span class="svc-tag chip-anim">IAM Review</span>
+          <span class="svc-tag chip-anim">PCI DSS</span>
+        </div>
+      </div>
+      <div class="svc-card reveal d3">
+        <div class="svc-ico">⚙️</div>
+        <h3>Managed Services & Support</h3>
+        <p>24/7 monitoring, proactive optimisation, SLA management, and rapid incident response. We manage your Amazon Connect environment so your team can focus on customers, not infrastructure.</p>
+        <div class="svc-tags">
+          <span class="svc-tag chip-anim">24/7 Monitoring</span>
+          <span class="svc-tag chip-anim">SLA Management</span>
+          <span class="svc-tag chip-anim">Proactive Tuning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CAPABILITIES (TABBED) ═══════ -->
+<section class="capabilities" id="capabilities">
+  <div class="cap-scan"></div>
+  <div class="inner" style="position:relative;z-index:1;">
+    <div class="reveal">
+      <div class="eyebrow eyebrow-aws">Platform Capabilities</div>
+      <h2 class="sec-h">Everything in One Cloud Platform</h2>
+      <p class="sec-sub">Amazon Connect brings together voice, digital, AI, analytics, and workforce tools — all configurable without code.</p>
+    </div>
+
+    <div class="cap-tabs reveal d1">
+      <button class="cap-tab on" onclick="showCap('voice',this)">📞 Voice & IVR</button>
+      <button class="cap-tab" onclick="showCap('digital',this)">💬 Digital Channels</button>
+      <button class="cap-tab" onclick="showCap('ai',this)">🤖 AI & Analytics</button>
+      <button class="cap-tab" onclick="showCap('workforce',this)">👥 Workforce</button>
+    </div>
+
+    <!-- Voice & IVR -->
+    <div class="cap-panel on" id="cap-voice">
+      <div class="cap-info">
+        <h3>Voice & Intelligent IVR</h3>
+        <p>Deploy enterprise-grade voice infrastructure in the cloud. Build dynamic call flows with drag-and-drop IVR, intelligent routing, and sub-second latency — at global scale.</p>
+        <div class="cap-features">
+          <div class="cap-feat">
+            <div class="cap-feat-ico">🎙️</div>
+            <div>
+              <h4>Natural Language IVR</h4>
+              <p>Amazon Lex-powered speech recognition understands customers in natural language — no menu navigation required.</p>
+            </div>
+          </div>
+          <div class="cap-feat">
+            <div class="cap-feat-ico">📡</div>
+            <div>
+              <h4>Skills-based Routing</h4>
+              <p>Route to the best available agent based on skills, language, history, and customer value — automatically.</p>
+            </div>
+          </div>
+          <div class="cap-feat">
+            <div class="cap-feat-ico">🔄</div>
+            <div>
+              <h4>Callback & Queuing</h4>
+              <p>Eliminate hold time with intelligent callbacks. Customers keep their place in queue without staying on the line.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cap-metrics">
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="99.99">0%</div><div class="cap-m-l">Uptime SLA on Amazon Connect voice</div></div>
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="40">0%</div><div class="cap-m-l">Reduction in call abandonment with callbacks</div></div>
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="3">0×</div><div class="cap-m-l">Faster IVR changes vs legacy on-prem systems</div></div>
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="35">0%</div><div class="cap-m-l">Improvement in first-call resolution rate</div></div>
+      </div>
+    </div>
+
+    <!-- Digital Channels -->
+    <div class="cap-panel" id="cap-digital">
+      <div class="cap-info">
+        <h3>Omnichannel Digital CX</h3>
+        <p>Serve customers wherever they are — chat, email, SMS, WhatsApp, social — all managed in one unified agent workspace with full context across channels.</p>
+        <div class="cap-features">
+          <div class="cap-feat">
+            <div class="cap-feat-ico">💬</div>
+            <div>
+              <h4>Unified Agent Desktop</h4>
+              <p>One workspace for voice, chat, email, and social. Agents see full conversation history regardless of channel.</p>
+            </div>
+          </div>
+          <div class="cap-feat">
+            <div class="cap-feat-ico">📱</div>
+            <div>
+              <h4>Web & Mobile Chat</h4>
+              <p>Embed Amazon Connect chat into any website or app. Seamlessly escalate to voice with context preserved.</p>
+            </div>
+          </div>
+          <div class="cap-feat">
+            <div class="cap-feat-ico">🔔</div>
+            <div>
+              <h4>Proactive Outreach</h4>
+              <p>Automated outbound campaigns via voice, SMS, and email — personalised, compliant, and measurable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cap-metrics">
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="60">0%</div><div class="cap-m-l">Digital deflection reducing call volume</div></div>
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="4.2">0</div><div class="cap-m-l">Average CSAT score on digital channels</div></div>
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="5">0+</div><div class="cap-m-l">Channels unified in one agent workspace</div></div>
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="25">0%</div><div class="cap-m-l">Higher NPS from omnichannel customers</div></div>
+      </div>
+    </div>
+
+    <!-- AI & Analytics -->
+    <div class="cap-panel" id="cap-ai">
+      <div class="cap-info">
+        <h3>AI-Powered Insights & Automation</h3>
+        <p>Contact Lens for Amazon Connect uses machine learning to analyse every call and chat in real time — detecting sentiment, identifying coaching opportunities, and surfacing compliance risks.</p>
+        <div class="cap-features">
+          <div class="cap-feat">
+            <div class="cap-feat-ico">🎯</div>
+            <div>
+              <h4>Real-time Sentiment Analysis</h4>
+              <p>Supervisors get live alerts when a conversation is escalating — before it becomes a complaint.</p>
+            </div>
+          </div>
+          <div class="cap-feat">
+            <div class="cap-feat-ico">📝</div>
+            <div>
+              <h4>Automated Call Summaries</h4>
+              <p>Generative AI writes call summaries directly into your CRM — zero agent after-call work.</p>
+            </div>
+          </div>
+          <div class="cap-feat">
+            <div class="cap-feat-ico">📊</div>
+            <div>
+              <h4>Custom Dashboards & Reporting</h4>
+              <p>Kinesis streams feed into QuickSight for real-time and historical reporting tailored to your KPIs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cap-metrics">
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="100">0%</div><div class="cap-m-l">Of calls automatically transcribed and analysed</div></div>
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="70">0%</div><div class="cap-m-l">Reduction in manual QA time with Contact Lens</div></div>
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="0">0</div><div class="cap-m-l">Manual after-call summary entries with AI assist</div></div>
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="50">0%</div><div class="cap-m-l">Improvement in compliance monitoring coverage</div></div>
+      </div>
+    </div>
+
+    <!-- Workforce -->
+    <div class="cap-panel" id="cap-workforce">
+      <div class="cap-info">
+        <h3>Workforce Management & Optimisation</h3>
+        <p>Amazon Connect integrates with leading WFM tools — Verint, Calabrio, NICE — and offers native forecasting and scheduling to keep your team perfectly staffed.</p>
+        <div class="cap-features">
+          <div class="cap-feat">
+            <div class="cap-feat-ico">📅</div>
+            <div>
+              <h4>AI-driven Forecasting</h4>
+              <p>ML models predict contact volume by channel, time of day, and season to optimise staffing automatically.</p>
+            </div>
+          </div>
+          <div class="cap-feat">
+            <div class="cap-feat-ico">🎓</div>
+            <div>
+              <h4>Agent Performance & Coaching</h4>
+              <p>Built-in scorecards, quality evaluations, and coaching templates — guided by Contact Lens AI insights.</p>
+            </div>
+          </div>
+          <div class="cap-feat">
+            <div class="cap-feat-ico">🌍</div>
+            <div>
+              <h4>Remote & Hybrid Workforce</h4>
+              <p>Agents can work from anywhere with just a browser and internet connection. Zero hardware required.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cap-metrics">
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="20">0%</div><div class="cap-m-l">Reduction in overstaffing costs via AI forecasting</div></div>
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="30">0%</div><div class="cap-m-l">Improvement in agent satisfaction scores</div></div>
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="0">0</div><div class="cap-m-l">Hardware needed — 100% browser-based agent</div></div>
+        <div class="cap-metric"><div class="cap-m-n count-num" data-val="45">0%</div><div class="cap-m-l">Faster onboarding of new agents vs legacy systems</div></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ HOW WE BUILD YOUR JOURNEY ═══════ -->
+<section class="journey" id="journey">
+  <div class="inner">
+    <div class="reveal" style="text-align:center;margin-bottom:72px;">
+      <div class="eyebrow" style="justify-content:center;">Our Process</div>
+      <h2 class="sec-h" style="text-align:center;">How We Build Your<br />Amazon Connect Journey</h2>
+      <p class="sec-sub sec-sub-wide" style="margin:0 auto 0;text-align:center;">A proven 5-phase methodology refined across 50+ deployments — from your first conversation to a fully managed, high-performing contact center.</p>
+    </div>
+    <div class="journey-flow">
+      <div class="journey-step" style="transition-delay:.05s">
+        <div class="js-num">🔍<div class="js-step-lbl">1</div></div>
+        <h4>Discovery & Assessment</h4>
+        <p>Audit current infrastructure, map call flows, identify integration requirements and define success KPIs.</p>
+        <span class="js-tag">Week 1–2</span>
+      </div>
+      <div class="journey-step" style="transition-delay:.15s">
+        <div class="js-num">🏗️<div class="js-step-lbl">2</div></div>
+        <h4>Architecture Design</h4>
+        <p>Build your target-state architecture: routing logic, IVR trees, AI enablement, integrations, and security model.</p>
+        <span class="js-tag">Week 2–4</span>
+      </div>
+      <div class="journey-step" style="transition-delay:.25s">
+        <div class="js-num">🚀<div class="js-step-lbl">3</div></div>
+        <h4>Build & Migrate</h4>
+        <p>Deploy Amazon Connect, migrate number inventory, configure contact flows, and integrate with your CRM stack.</p>
+        <span class="js-tag">Week 4–8</span>
+      </div>
+      <div class="journey-step" style="transition-delay:.35s">
+        <div class="js-num">✅<div class="js-step-lbl">4</div></div>
+        <h4>Test & Go-Live</h4>
+        <p>UAT, load testing, agent training, and a phased cut-over — zero disruption to your live operation.</p>
+        <span class="js-tag">Week 8–10</span>
+      </div>
+      <div class="journey-step" style="transition-delay:.45s">
+        <div class="js-num">📈<div class="js-step-lbl">5</div></div>
+        <h4>Manage & Optimise</h4>
+        <p>24/7 monitoring, SLA management, quarterly reviews, and continuous optimisation as your business evolves.</p>
+        <span class="js-tag">Ongoing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ WHY SYSGRATE ═══════ -->
+<section class="why-sg" id="why">
+  <div class="inner">
+    <div class="why-grid">
+      <div class="why-l reveal">
+        <div class="eyebrow">Why Sysgrate</div>
+        <h2 class="sec-h">The Smarter Way to Deploy Amazon Connect</h2>
+        <p class="sec-sub">Other partners deliver the technology. We engineer the outcome — faster, at lower cost, and with strategic depth that lasts beyond go-live.</p>
+        <div class="why-benefits">
+          <div class="why-b">
+            <div class="why-b-ico">🏆</div>
+            <div><h4>AWS Certified — Not Just Resellers</h4><p>We hold AWS Service Delivery Partner status for Amazon Connect — validated expertise, not just reseller access.</p></div>
+          </div>
+          <div class="why-b">
+            <div class="why-b-ico">⚡</div>
+            <div><h4>30–50% Faster Deployments</h4><p>Our reusable IVR migration tool and pre-built contact flow templates cut weeks off your go-live timeline.</p></div>
+          </div>
+          <div class="why-b">
+            <div class="why-b-ico">🔗</div>
+            <div><h4>Deep CRM Integration Expertise</h4><p>HubSpot, Zendesk, and Salesforce integrations built and tested — not handed off to a third party.</p></div>
+          </div>
+          <div class="why-b">
+            <div class="why-b-ico">🛡️</div>
+            <div><h4>Security-first Architecture</h4><p>Every deployment is designed with enterprise security, compliance, and governance at its core — not bolted on afterwards.</p></div>
+          </div>
+          <div class="why-b">
+            <div class="why-b-ico">🌍</div>
+            <div><h4>Global + Regional Capability</h4><p>Delivered projects across North America, Europe, APAC, and Middle East — with local knowledge that matters.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Comparison table -->
+      <div class="reveal d2">
+        <div class="cmp-card">
+          <div class="cmp-card-hd">
+            <div>
+              <h4>Sysgrate vs. Buying Direct from AWS</h4>
+              <p>What you get with a specialist partner vs. going it alone</p>
+            </div>
+          </div>
+          <table class="cmp-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>DIY / AWS Direct</th>
+                <th class="sg-h">With Sysgrate</th>
+                <th class="win-h">Your Advantage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="cat">Architecture</td><td>Generic templates</td><td class="sg">Business-first design</td><td class="win">Purpose-built</td></tr>
+              <tr><td class="cat">Deployment speed</td><td>12–20 weeks</td><td class="sg">6–10 weeks</td><td class="win">30–50% faster</td></tr>
+              <tr><td class="cat">IVR migration</td><td>Manual rebuild</td><td class="sg">Migration tool</td><td class="win">Weeks saved</td></tr>
+              <tr><td class="cat">CRM integration</td><td>Custom dev required</td><td class="sg">Pre-built connectors</td><td class="win">Immediate value</td></tr>
+              <tr><td class="cat">AI enablement</td><td>Optional / manual</td><td class="sg">Standard in every build</td><td class="win">Day-one AI</td></tr>
+              <tr><td class="cat">Ongoing support</td><td>AWS standard queues</td><td class="sg">24/7 managed service</td><td class="win">Priority resolution</td></tr>
+              <tr><td class="cat">Security review</td><td>Not included</td><td class="sg">3-week assessment</td><td class="win">Compliance-ready</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ OUTCOMES ═══════ -->
+<section class="outcomes" id="outcomes">
+  <div class="inner">
+    <div class="reveal" style="text-align:center;max-width:660px;margin:0 auto 72px;">
+      <div class="eyebrow eyebrow-aws" style="justify-content:center;">Proven Outcomes</div>
+      <h2 class="sec-h" style="text-align:center;">Results That Speak<br />for Themselves</h2>
+      <p class="sec-sub" style="margin:0 auto;text-align:center;">Benchmarks from Sysgrate-delivered Amazon Connect deployments across enterprise, mid-market, and public sector clients.</p>
+    </div>
+    <div class="outcomes-grid">
+      <div class="outcome-card reveal d1">
+        <div class="oc-ico">⚡</div>
+        <div class="oc-n count-num" data-val="40">0%</div>
+        <div class="oc-l">Reduction in average handle time (AHT) after AI-assisted deployments</div>
+      </div>
+      <div class="outcome-card reveal d2">
+        <div class="oc-ico">🚀</div>
+        <div class="oc-n count-num" data-val="3">0×</div>
+        <div class="oc-l">Faster go-live vs. legacy on-premise deployments or DIY AWS</div>
+      </div>
+      <div class="outcome-card reveal d3">
+        <div class="oc-ico">💰</div>
+        <div class="oc-n count-num" data-val="35">0%</div>
+        <div class="oc-l">Average TCO reduction vs. legacy contact center platforms</div>
+      </div>
+      <div class="outcome-card reveal d4">
+        <div class="oc-ico">🎯</div>
+        <div class="oc-n count-num" data-val="28">0%</div>
+        <div class="oc-l">Improvement in first-contact resolution across voice and digital</div>
+      </div>
+      <div class="outcome-card reveal d1">
+        <div class="oc-ico">🤖</div>
+        <div class="oc-n count-num" data-val="70">0%</div>
+        <div class="oc-l">Reduction in manual QA effort with Contact Lens automation</div>
+      </div>
+      <div class="outcome-card reveal d2">
+        <div class="oc-ico">😊</div>
+        <div class="oc-n count-num" data-val="22">+0%</div>
+        <div class="oc-l">CSAT improvement within 90 days of going live on Amazon Connect</div>
+      </div>
+      <div class="outcome-card reveal d3">
+        <div class="oc-ico">⏱️</div>
+        <div class="oc-n count-num" data-val="24">0/7</div>
+        <div class="oc-l">Managed support coverage — proactive monitoring, not reactive fixes</div>
+      </div>
+      <div class="outcome-card reveal d4">
+        <div class="oc-ico">🌐</div>
+        <div class="oc-n count-num" data-val="50">0+</div>
+        <div class="oc-l">Amazon Connect deployments successfully delivered by the Sysgrate team</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ SOLUTIONS / TOOLS ═══════ -->
+<section class="solutions" id="solutions">
+  <div class="inner">
+    <div class="reveal">
+      <div class="eyebrow eyebrow-aws">Sysgrate-Built Solutions</div>
+      <h2 class="sec-h">Ready-to-Deploy Add-Ons for Amazon Connect</h2>
+      <p class="sec-sub">Proprietary tools and modules built by Sysgrate that install directly into your AWS account — extending Amazon Connect with capabilities not available out of the box.</p>
+    </div>
+    <div class="solutions-grid">
+      <div class="sol-card reveal d1">
+        <div class="sol-ico">📊</div>
+        <div>
+          <h3>Custom Reporting Suite</h3>
+          <p>Real-time and historical dashboards using AWS Kinesis and QuickSight. Pre-built templates for SLA reporting, agent performance, and customer journey analytics — fully configurable to your KPIs.</p>
+          <div class="sol-chips">
+            <span class="sol-chip chip-anim">Kinesis Streams</span>
+            <span class="sol-chip chip-anim">QuickSight Dashboards</span>
+            <span class="sol-chip chip-anim">Historical Reports</span>
+            <span class="sol-chip chip-anim">Real-time Wallboards</span>
+          </div>
+        </div>
+      </div>
+      <div class="sol-card reveal d2">
+        <div class="sol-ico">🔄</div>
+        <div>
+          <h3>IVR Migration Tool</h3>
+          <p>Our proprietary tool accelerates migration from legacy IVR platforms (Genesys, Avaya, Cisco) to Amazon Connect — automatically mapping menus and converting routing logic.</p>
+          <div class="sol-chips">
+            <span class="sol-chip chip-anim">Legacy IVR Import</span>
+            <span class="sol-chip chip-anim">Flow Conversion</span>
+            <span class="sol-chip chip-anim">Validation Testing</span>
+          </div>
+        </div>
+      </div>
+      <div class="sol-card reveal d1">
+        <div class="sol-ico">🎙️</div>
+        <div>
+          <h3>Voicemail & Callback Engine</h3>
+          <p>Enterprise voicemail, missed call management, and intelligent callback scheduling — built as a plug-and-play Lambda module that integrates directly with Amazon Connect contact flows.</p>
+          <div class="sol-chips">
+            <span class="sol-chip chip-anim">Voicemail Capture</span>
+            <span class="sol-chip chip-anim">Callback Scheduling</span>
+            <span class="sol-chip chip-anim">Email Notifications</span>
+          </div>
+        </div>
+      </div>
+      <div class="sol-card reveal d2">
+        <div class="sol-ico">📅</div>
+        <div>
+          <h3>Holiday & Emergency Routing</h3>
+          <p>Dynamic business hours management with a self-service portal. Administrators control routing overrides, holiday schedules, and emergency closures — with zero developer dependency.</p>
+          <div class="sol-chips">
+            <span class="sol-chip chip-anim">Holiday Calendars</span>
+            <span class="sol-chip chip-anim">Emergency Override</span>
+            <span class="sol-chip chip-anim">Self-Service Portal</span>
+            <span class="sol-chip chip-anim">Multi-Queue Support</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ INTEGRATIONS ═══════ -->
+<section class="integrations" id="integrations">
+  <div class="inner">
+    <div class="reveal" style="text-align:center;margin-bottom:60px;">
+      <div class="eyebrow eyebrow-aws" style="justify-content:center;">Integrations</div>
+      <h2 class="sec-h" style="text-align:center;">Connects to Your Entire Tech Stack</h2>
+      <p class="sec-sub sec-sub-wide" style="margin:0 auto;text-align:center;">Amazon Connect integrates natively with leading CRM, WFM, analytics, and business tools — and Sysgrate has pre-built connectors for the most common combinations.</p>
+    </div>
+    <div class="int-grid">
+      <div class="int-card reveal d1"><div class="int-ico">🧡</div><h4>HubSpot CRM</h4><p>Screen pops, auto call logging, and pipeline sync</p></div>
+      <div class="int-card reveal d2"><div class="int-ico">☁️</div><h4>Salesforce</h4><p>CTI adapter, case creation, and Service Cloud Voice</p></div>
+      <div class="int-card reveal d3"><div class="int-ico">💬</div><h4>Zendesk</h4><p>Ticket creation, agent widget, and full conversation sync</p></div>
+      <div class="int-card reveal d4"><div class="int-ico">🔧</div><h4>ServiceNow</h4><p>Incident creation, CMDB lookup, and workflow triggers</p></div>
+      <div class="int-card reveal d1"><div class="int-ico">📊</div><h4>QuickSight</h4><p>Real-time and historical dashboards via Kinesis</p></div>
+      <div class="int-card reveal d2"><div class="int-ico">🤖</div><h4>Amazon Lex</h4><p>Conversational AI bots for voice and chat deflection</p></div>
+      <div class="int-card reveal d3"><div class="int-ico">👥</div><h4>Verint / NICE</h4><p>Enterprise WFM, QA, and speech analytics</p></div>
+      <div class="int-card reveal d4"><div class="int-ico">📧</div><h4>Microsoft Teams</h4><p>Agent collaboration, escalation, and expert finder</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FINAL CTA ═══════ -->
+<section class="final-cta" id="contact">
+  <div class="cta-ring"></div>
+  <div class="inner">
+    <div class="fc-inner reveal">
+      <h2>Ready to Transform<br />Your Contact Center?</h2>
+      <p>Talk to a Sysgrate Amazon Connect specialist. We'll assess your current setup, identify quick wins, and show you exactly what a modern cloud contact center looks like for your business — free, with zero obligation.</p>
+      <div class="fc-btns">
+        <a href="discovery-call.html" class="btn btn-white btn-lg">📅 Book a Discovery Call</a>
+        <a href="pricing-audit.html" class="btn btn-out-white btn-lg">Request a Pricing Audit</a>
+        <a href="/cdn-cgi/l/email-protection#690c07061a01470e060d1e0007291a101a0e1b081d0c470a0604561a1c0b030c0a1d54280408130607492a0607070c0a1d492c07181c001b10" class="btn btn-out-white btn-lg">✉️ Email Us Directly</a>
+      </div>
+      <div class="fc-trust">
+        <div class="fc-trust-item">AWS Certified Delivery Partner</div>
+        <div class="fc-trust-item">50+ Deployments Delivered</div>
+        <div class="fc-trust-item">24/7 Managed Support</div>
+        <div class="fc-trust-item">No Obligation Discovery</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CREDENTIALS & BADGES ═══════ -->
+<section class="credentials" id="credentials">
+  <div class="inner">
+
+    <!-- Header -->
+    <div class="cred-header reveal">
+      <div class="eyebrow eyebrow-aws">Certifications &amp; Partnerships</div>
+      <h2>Verified by the World's<br/>Leading Technology Vendors</h2>
+      <p>Our credentials aren't just logos — they're independently verified proof of expertise, investment, and commitment to the highest tier of cloud and CX technology partnership.</p>
+    </div>
+
+    <!-- Full badge banner image -->
+    <div class="cred-banner-wrap reveal d1">
+      <div class="cred-banner-inner">
+        <img
+          src="credentials-badge.png"
+          alt="Sysgrate partner credentials — AWS Marketplace, Zoom Solution Provider, Zoom Authorized Reseller, Zoom Up Platinum Reseller, Zoom Up Platinum Services"
+          class="cred-banner-img"
+        />
+        <div class="cred-banner-overlay"></div>
+      </div>
+    </div>
+
+    <!-- Individual badge cards -->
+    <div class="cred-cards reveal d2">
+
+      <div class="cred-card aws-card">
+        <div class="cc-ico">☁️</div>
+        <div class="cc-name">AWS Marketplace</div>
+        <div class="cc-desc">Listed &amp; transactable on the official Amazon Web Services partner marketplace</div>
+        <div class="cc-pill pill-aws">AWS Partner</div>
+      </div>
+
+      <div class="cred-card zoom-card">
+        <div class="cc-ico">🔵</div>
+        <div class="cc-name">Zoom Solution Provider</div>
+        <div class="cc-desc">Authorised to architect and deploy full Zoom enterprise environments end-to-end</div>
+        <div class="cc-pill pill-zoom">Solution Provider</div>
+      </div>
+
+      <div class="cred-card zoom-card">
+        <div class="cc-ico">✅</div>
+        <div class="cc-name">Zoom Authorized Reseller</div>
+        <div class="cc-desc">Official Zoom channel partner — vendor pricing passed directly to clients, zero markup</div>
+        <div class="cc-pill pill-zoom">Authorized Reseller</div>
+      </div>
+
+      <div class="cred-card plat-card">
+        <div class="cc-ico">🏆</div>
+        <div class="cc-name">Zoom Up Platinum — Reseller</div>
+        <div class="cc-desc">Top-tier Zoom Up Partner Program status with Customer Experience &amp; Customer Success specialisations</div>
+        <div class="cc-pill pill-platinum">⭐ Platinum</div>
+      </div>
+
+      <div class="cred-card plat-card">
+        <div class="cc-ico">🥇</div>
+        <div class="cc-name">Zoom Up Platinum — Services</div>
+        <div class="cc-desc">Platinum-level services partnership recognised for Deployment &amp; Customer Experience excellence</div>
+        <div class="cc-pill pill-platinum">⭐ Platinum</div>
+      </div>
+
+    </div>
+
+    <!-- Trust bar -->
+    <div class="cred-trust-bar reveal d3">
+      <div class="ctb-item">
+        <div class="ctb-ico">🛡️</div>
+        <div>
+          <div class="ctb-text-title">Independently Verified</div>
+          <div class="ctb-text-sub">All credentials audited by AWS &amp; Zoom</div>
+        </div>
+      </div>
+      <div class="ctb-item">
+        <div class="ctb-ico">⭐</div>
+        <div>
+          <div class="ctb-text-title">Highest Tier Status</div>
+          <div class="ctb-text-sub">Platinum — the top level of Zoom's partner program</div>
+        </div>
+      </div>
+      <div class="ctb-item">
+        <div class="ctb-ico">🔗</div>
+        <div>
+          <div class="ctb-text-title">Multi-Platform Certified</div>
+          <div class="ctb-text-sub">AWS, Zoom, HubSpot &amp; Zendesk all covered</div>
+        </div>
+      </div>
+      <div class="ctb-item">
+        <div class="ctb-ico">🌍</div>
+        <div>
+          <div class="ctb-text-title">Global Partner Network</div>
+          <div class="ctb-text-sub">Active across North America, Europe &amp; APAC</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+  <div class="ft-grid">
+    <div>
+      <a href="index.html" class="ft-logo-wrap">
+        <img src="https://sysgrate.com/wp-content/uploads/2020/09/output-onlinepngtools-1.png" alt="Sysgrate"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='block'" />
+        <span class="ft-logo-fb">Sysgrate</span>
+      </a>
+      <p class="ft-tagline">Your Trusted Focus Partner for Amazon Connect, Zoom, HubSpot &amp; Zendesk. We engineer ecosystems — not just deployments.</p>
+      <div class="ft-aws-badge">☁️ AWS Service Delivery Partner</div>
+    </div>
+    <div class="ft-col">
+      <h5>Amazon Connect</h5>
+      <ul>
+        <li><a href="#services">Consulting &amp; Architecture</a></li>
+        <li><a href="#services">Migration Services</a></li>
+        <li><a href="#services">AI &amp; Automation</a></li>
+        <li><a href="#services">Managed Services</a></li>
+        <li><a href="#services">Security Assessment</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="https://sysgrate.com/company/about-us/">About Us</a></li>
+        <li><a href="index.html">Zoom · HubSpot · Zendesk</a></li>
+        <li><a href="https://sysgrate.com/blog/">Blog</a></li>
+        <li><a href="https://sysgrate.com/company/careers/">Careers</a></li>
+        <li><a href="https://sysgrate.com/contacts/">Contact</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h5>Get Started</h5>
+      <ul>
+        <li><a href="discovery-call.html">Book a Discovery Call</a></li>
+        <li><a href="pricing-audit.html">Request Pricing Audit</a></li>
+        <li><a href="mailto:enosh.godwin@sysgrate.com">enosh.godwin@sysgrate.com</a></li>
+        <li><a href="https://www.linkedin.com/company/sysgrate-technologies/">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div>© 2026 Sysgrate Technologies. All rights reserved. Amazon Connect is a trademark of Amazon Web Services.</div>
+    <div class="ft-links">
+      <a href="index.html">Main Site</a>
+      <a href="https://sysgrate.com">sysgrate.com</a>
+      <a href="https://www.linkedin.com/company/sysgrate-technologies/">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════
+   SCRIPTS
+   ═══════════════════════════════════════════════════ */
+
+/* ── Nav scroll shadow ── */
+const nav = document.getElementById('topnav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40), { passive: true });
+
+/* ── Cursor glow ── */
+const glow = document.getElementById('cursor-glow');
+document.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top  = e.clientY + 'px';
+});
+
+/* ── Capability tab switcher ── */
+function showCap(name, btn) {
+  document.querySelectorAll('.cap-tab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.cap-panel').forEach(p => p.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('cap-' + name).classList.add('on');
+  document.querySelectorAll('#cap-' + name + ' .count-num').forEach(el => {
+    el.classList.remove('counted');
+    void el.offsetWidth;
+    el.classList.add('counted');
+    startCount(el);
+  });
+}
+
+/* ── Hero particle canvas ── */
+(function() {
+  const hero   = document.querySelector('.hero');
+  const canvas = document.getElementById('hero-canvas');
+  if (!hero || !canvas) return;
+  const ctx = canvas.getContext('2d');
+  const COLORS = ['#FF9900','#FFB74D','#4F2DC4','#8B63F0','#E8612C','#60d4ff'];
+  let W, H, nodes = [];
+  function resize() { W = canvas.width = hero.offsetWidth; H = canvas.height = hero.offsetHeight; }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+
+  class Node {
+    reset(init) {
+      this.x  = Math.random() * W; this.y = init ? Math.random() * H : H + 10;
+      this.vx = (Math.random() - .5) * .28; this.vy = -(Math.random() * .3 + .08);
+      this.r  = Math.random() * 2.4 + .7; this.life = 0;
+      this.max = Math.random() * 360 + 200; this.col = COLORS[Math.floor(Math.random() * COLORS.length)];
+    }
+    constructor(init) { this.reset(init); }
+    tick() { this.x += this.vx; this.y += this.vy; this.life++; if (this.y < -20 || this.life > this.max) this.reset(false); }
+    draw() {
+      const p = this.life / this.max;
+      const a = p < .15 ? p/.15 : p > .8 ? 1-(p-.8)/.2 : 1;
+      ctx.globalAlpha = a * .55; ctx.fillStyle = this.col;
+      ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI*2); ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < 90; i++) nodes.push(new Node(true));
+
+  function drawEdges() {
+    for (let i = 0; i < nodes.length; i++) for (let j = i+1; j < nodes.length; j++) {
+      const dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+      const d  = Math.sqrt(dx*dx+dy*dy);
+      if (d < 90) {
+        ctx.globalAlpha = (1 - d/90) * .08;
+        ctx.strokeStyle = '#FF9900'; ctx.lineWidth = .5;
+        ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke();
+      }
+    }
+  }
+
+  let raf;
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+    drawEdges();
+    nodes.forEach(n => { n.tick(); n.draw(); });
+    ctx.globalAlpha = 1;
+    raf = requestAnimationFrame(loop);
+  }
+  loop();
+  document.addEventListener('visibilitychange', () => document.hidden ? cancelAnimationFrame(raf) : loop());
+})();
+
+/* ── Scroll reveal ── */
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); } });
+}, { threshold: .07, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+/* ── Journey steps reveal ── */
+const jObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); jObs.unobserve(e.target); } });
+}, { threshold: .1 });
+document.querySelectorAll('.journey-step').forEach(el => jObs.observe(el));
+
+/* ── Counter animation ── */
+function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
+function startCount(el) {
+  const raw = el.dataset.raw || el.textContent.trim();
+  el.dataset.raw = raw;
+  const m = raw.match(/[\d.]+/);
+  if (!m) { el.textContent = raw; return; }
+  const end = parseFloat(m[0]); const dur = 1600;
+  const t0  = performance.now();
+  const pre = raw.slice(0, m.index);
+  const suf = raw.slice(m.index + m[0].length);
+  const isF = m[0].includes('.');
+  function tick(now) {
+    const p = Math.min((now - t0) / dur, 1);
+    const v = easeOutQuart(p) * end;
+    const d = isF ? v.toFixed(2) : Math.floor(v);
+    el.textContent = pre + (d >= 1000 ? Number(d).toLocaleString() : d) + suf;
+    if (p < 1) requestAnimationFrame(tick); else el.textContent = raw;
+  }
+  requestAnimationFrame(tick);
+}
+
+const cntObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    if (!el.dataset.raw) el.dataset.raw = el.textContent.trim();
+    el.classList.add('counted'); startCount(el); cntObs.unobserve(el);
+  });
+}, { threshold: .5 });
+
+document.querySelectorAll('.count-num').forEach(el => {
+  const v = el.dataset.val;
+  if (v) {
+    const suf = el.textContent.replace(/[\d.]/g,'').trim();
+    el.textContent = '0' + suf;
+    el.dataset.raw = v + suf;
+  }
+  cntObs.observe(el);
+});
+
+/* ── 3D magnetic tilt ── */
+document.querySelectorAll('.svc-card, .outcome-card, .int-card, .cred-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r  = card.getBoundingClientRect();
+    const rx = ((e.clientY - r.top  - r.height/2) / (r.height/2)) * -6;
+    const ry = ((e.clientX - r.left - r.width /2) / (r.width /2)) *  6;
+    card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transition = 'transform .45s cubic-bezier(.25,.8,.25,1), box-shadow .25s, border-color .25s';
+    card.style.transform = '';
+    setTimeout(() => card.style.transition = '', 450);
+  });
+});
+
+/* ── Chip spring-in ── */
+const chipObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.querySelectorAll('.chip-anim, .svc-tag, .sol-chip').forEach((c, i) =>
+      setTimeout(() => c.classList.add('sprung'), i * 60));
+    chipObs.unobserve(e.target);
+  });
+}, { threshold: .3 });
+document.querySelectorAll('.svc-card, .sol-card').forEach(el => chipObs.observe(el));
+
+/* ── Table row stagger ── */
+document.querySelectorAll('.cmp-table tbody tr').forEach((row, i) => {
+  row.style.opacity = '0'; row.style.transform = 'translateX(-12px)';
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      setTimeout(() => {
+        row.style.transition = 'opacity .4s ease, transform .4s ease, background .15s';
+        row.style.opacity = '1'; row.style.transform = 'translateX(0)';
+      }, i * 55);
+      obs.unobserve(row);
+    });
+  }, { threshold: .1 });
+  obs.observe(row);
+});
+</script>
+</body>
+</html>
