@@ -243,6 +243,17 @@ textarea{resize:none;min-height:88px;line-height:1.6}
   .row2{grid-template-columns:1fr}
   .chk-grid{grid-template-columns:1fr}
 }
+  /* ===== Logo alignment (Sysgrate + AWS) ===== */
+.l-logo{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.aws-logo-demo{
+  height:24px;
+  width:auto;
+}
 </style>
 </head>
 <body>
@@ -255,7 +266,8 @@ textarea{resize:none;min-height:88px;line-height:1.6}
 
     <div class="topbar">
       <a href="https://sysgrate-aws-connect.vercel.app/#contact" class="l-logo">
-        <img src="sysgrate-logo.png" alt="Sysgrate"/>
+           <img src="sysgrate-logo.png" alt="Sysgrate" class="sysgrate-logo"/>
+           <img src="aws-logo.png" alt="AWS" class="aws-logo-demo"/>
       </a>
       <a href="amazon-connect-v2.html" class="l-back">← Back</a>
     </div>
@@ -500,4 +512,5 @@ form.addEventListener('submit',async(e)=>{
       form.style.display='none';fwHd.style.display='none';
       successEl.style.display='block';
       successEl.scrollIntoView({b
+
 
