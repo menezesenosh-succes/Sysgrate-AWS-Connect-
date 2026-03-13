@@ -341,12 +341,12 @@ textarea{resize:none;min-height:88px;line-height:1.6}
       </div>
     </div>
                 
-    <form id="dc-form" action="https://formsubmit.co/enosh.godwin@sysgrate.com" method="POST">
-      <input type="hidden" name="_next" value="https://sysgrate-aws-connect.vercel.app/thank-you.html">
+    <form id="dc-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="a51d08fb-610b-4cae-8046-27153ea22d26">
       <input type="hidden" name="_subject" value="New Demo Request - Sysgrate AWS Connect">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_template" value="table">
-
+       <input type="hidden" name="_next" value="https://sysgrate-aws-connect.vercel.app/thank-you.html">
+       <input type="hidden" name="captcha" value="false">
+     
       <div class="row2">
         <div class="field">
           <label class="lbl">First Name <span class="req">*</span></label>
@@ -508,8 +508,6 @@ const btn=document.getElementById('submit-btn');
 const successEl=document.getElementById('success');
 const fwHd=document.getElementById('fw-hd');
 
-form.addEventListener('submit',async(e)=>{
-  e.preventDefault();
   btn.classList.add('is-loading');btn.disabled=true;
   try{
     const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
@@ -517,6 +515,7 @@ form.addEventListener('submit',async(e)=>{
       form.style.display='none';fwHd.style.display='none';
       successEl.style.display='block';
       successEl.scrollIntoView({b
+
 
 
 
