@@ -341,7 +341,7 @@ textarea{resize:none;min-height:88px;line-height:1.6}
       </div>
     </div>
                 
-    <form id="dc-form" action="https://api.web3forms.com/submit" method="POST" data-ajax="true">
+   <form id="dc-form">
       <input type="hidden" name="access_key" value="a51d08fb-610b-4cae-8046-27153ea22d26">
       <input type="hidden" name="from_name" value="Sysgrate AWS Connect Demo Request">
       <input type="hidden" name="_subject" value="New Demo Request - Sysgrate AWS Connect">
@@ -505,49 +505,47 @@ textarea{resize:none;min-height:88px;line-height:1.6}
 
 /* Form submit */
 <script>
+
 const form = document.getElementById("dc-form");
 const btn = document.getElementById("submit-btn");
 
 form.addEventListener("submit", async function(e) {
 
-  e.preventDefault(); // stop normal form redirect
+e.preventDefault();
 
-  btn.classList.add("is-loading");
-  btn.disabled = true;
+btn.classList.add("is-loading");
+btn.disabled = true;
 
-  const formData = new FormData(form);
+const formData = new FormData(form);
+formData.append("access_key","a51d08fb-610b-4cae-8046-27153ea22d26");
 
-  try {
+try {
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData
-    });
+const response = await fetch("https://api.web3forms.com/submit",{
+method:"POST",
+body:formData
+});
 
-    const result = await response.json();
+const result = await response.json();
 
-    if (result.success) {
+if(result.success){
 
-      // redirect to your custom thank-you page
-      window.location.href = "/thank-you.html";
+window.location.href="/thank-you.html";
 
-    } else {
+}else{
 
-      alert("Submission failed. Please try again.");
-      btn.classList.remove("is-loading");
-      btn.disabled = false;
+alert("Submission failed");
 
-    }
+}
 
-  } catch (error) {
+}catch(error){
 
-    alert("Error submitting form.");
-    btn.classList.remove("is-loading");
-    btn.disabled = false;
+alert("Error submitting form");
 
-  }
+}
 
 });
+
 </script>
 
 
