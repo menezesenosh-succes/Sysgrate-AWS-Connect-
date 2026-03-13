@@ -504,32 +504,52 @@ textarea{resize:none;min-height:88px;line-height:1.6}
 })();
 
 /* Form submit */
+<script>
 const form = document.getElementById("dc-form");
+const btn = document.getElementById("submit-btn");
 
 form.addEventListener("submit", async function(e) {
 
-  e.preventDefault();
+  e.preventDefault(); // stop normal form redirect
 
-  const data = new FormData(form);
+  btn.classList.add("is-loading");
+  btn.disabled = true;
 
-  const response = await fetch("https://api.web3forms.com/submit", {
-    method: "POST",
-    body: data
-  });
+  const formData = new FormData(form);
 
-  const result = await response.json();
+  try {
 
-  if(result.success) {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
 
-    window.location.href = "https://sysgrate-aws-connect.vercel.app/thank-you.html";
+    const result = await response.json();
 
-  } else {
+    if (result.success) {
 
-    alert("Submission failed. Please try again.");
+      // redirect to your custom thank-you page
+      window.location.href = "/thank-you.html";
+
+    } else {
+
+      alert("Submission failed. Please try again.");
+      btn.classList.remove("is-loading");
+      btn.disabled = false;
+
+    }
+
+  } catch (error) {
+
+    alert("Error submitting form.");
+    btn.classList.remove("is-loading");
+    btn.disabled = false;
 
   }
 
 });
+</script>
+
 
 
 
