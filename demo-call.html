@@ -512,10 +512,9 @@ const fwHd=document.getElementById('fw-hd');
   btn.classList.add('is-loading');btn.disabled=true;
   try{
     const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
-    if(res.ok){
-      form.style.display='none';fwHd.style.display='none';
-      successEl.style.display='block';
-      successEl.scrollIntoView({b
+   if(res.ok){
+  window.location.href = "https://sysgrate-aws-connect.vercel.app/thank-you.html";
+}
 
 
 
