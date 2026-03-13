@@ -508,7 +508,11 @@ const btn=document.getElementById('submit-btn');
 const successEl=document.getElementById('success');
 const fwHd=document.getElementById('fw-hd');
 
-
+form.addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  btn.classList.add('is-loading');btn.disabled=true;
+  try{
+    const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
     if(res.ok){
       form.style.display='none';fwHd.style.display='none';
       successEl.style.display='block';
