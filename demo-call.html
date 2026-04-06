@@ -1,561 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Book a Demo — Sysgrate | Amazon Connect Experts</title>
-<meta name="description" content="Book a free 30-minute demo with a Sysgrate Amazon Connect specialist. No obligation — just expert guidance on transforming your contact center."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Book a Meeting | Sysgrate</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-:root {
-  --sg-700:#3B1FA3;--sg-600:#4F2DC4;--sg-500:#6B3DE8;--sg-400:#8B63F0;
-  --sg-200:#D4C5FB;--sg-100:#EDE8FD;--sg-50:#F6F3FF;
-  --aws:#FF9900;--aws-d:#E07B00;--aws-l:#FFB74D;--aws-50:#FFF8EC;
-  --dk1:#040C1B;--dk2:#071223;--dk3:#0C1A32;
-  --n900:#0F0F1A;--n700:#2E2E46;--n500:#6B6B8A;--n400:#9595B0;
-  --n300:#C0C0D2;--n200:#E0E0EE;--n100:#F2F2FA;--n50:#F8F8FC;
-  --f-head:'Outfit',sans-serif;--f-body:'DM Sans',sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;font-family:var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{text-decoration:none}
 
-/* ── SPLIT LAYOUT ── */
-.page{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
-
-/* ═══════════════════════════════════
-   LEFT PANEL
-═══════════════════════════════════ */
-.left{
-  background:linear-gradient(160deg,var(--dk1) 0%,var(--dk3) 55%,#0e1a36 100%);
-  position:relative;overflow:hidden;
-  display:flex;flex-direction:column;padding:48px 52px;
-}
-.left::before{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(255,153,0,.05) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,153,0,.05) 1px,transparent 1px);
-  background-size:64px 64px;
-  mask-image:radial-gradient(ellipse 85% 80% at 40% 50%,black,transparent);
-  animation:gp 8s ease-in-out infinite;
-}
-@keyframes gp{0%,100%{opacity:.5}50%{opacity:1}}
-.left::after{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse 55% 55% at 95% 5%,rgba(255,153,0,.1) 0%,transparent 55%),
-    radial-gradient(ellipse 50% 60% at -5% 90%,rgba(79,45,196,.25) 0%,transparent 55%);
-}
-canvas{position:absolute;inset:0;pointer-events:none;opacity:.6;z-index:0}
-.left-in{position:relative;z-index:1;display:flex;flex-direction:column;height:100%}
-
-/* Brand row */
-.topbar{display:flex;align-items:center;gap:0;margin-bottom:0}
-.l-logo{display:flex;align-items:center;gap:0;text-decoration:none}
-.l-logo img{height:34px;width:auto;flex-shrink:0;display:block}
-.l-back{margin-left:auto;display:flex;align-items:center;gap:5px;
-  font-family:var(--f-body);font-size:12.5px;font-weight:500;
-  color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s}
-.l-back:hover{color:rgba(255,255,255,.75)}
-
-/* Hero text */
-.l-hero{margin:60px 0 52px}
-.l-badge{display:inline-flex;align-items:center;gap:9px;
-  background:rgba(255,153,0,.12);border:1px solid rgba(255,153,0,.28);
-  padding:5px 14px 5px 9px;border-radius:100px;
-  font-family:var(--f-body);font-size:11.5px;font-weight:700;color:var(--aws-l);
-  margin-bottom:28px;
-  animation:bdrop .8s .1s cubic-bezier(.34,1.56,.64,1) both}
-@keyframes bdrop{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
-.bdot{width:7px;height:7px;border-radius:50%;background:var(--aws);
-  animation:blink 2.5s ease-in-out infinite;flex-shrink:0}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.l-hero h1{font-family:var(--f-head);font-size:clamp(28px,3vw,42px);
-  font-weight:900;letter-spacing:-.045em;line-height:1.06;color:white;margin-bottom:18px;
-  animation:sli .7s .2s cubic-bezier(.16,1,.3,1) both}
-@keyframes sli{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
-.h1-aws{background:linear-gradient(135deg,var(--aws) 0%,var(--aws-l) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.l-hero p{font-family:var(--f-body);font-size:15px;color:rgba(255,255,255,.55);
-  line-height:1.72;max-width:400px;
-  animation:sli .7s .3s cubic-bezier(.16,1,.3,1) both}
-
-/* What happens steps */
-.l-steps{margin-bottom:52px}
-.ls-lbl{font-family:var(--f-head);font-size:10.5px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.12em;color:var(--aws);margin-bottom:22px;
-  display:flex;align-items:center;gap:10px}
-.ls-lbl::before{content:'';width:16px;height:2px;background:var(--aws);border-radius:2px}
-.step-list{display:flex;flex-direction:column;gap:0}
-.step{display:flex;gap:16px;align-items:flex-start;position:relative}
-.step:not(:last-child)::after{content:'';position:absolute;
-  left:16px;top:36px;width:1px;height:calc(100% - 6px);
-  background:linear-gradient(to bottom,rgba(255,153,0,.3),rgba(255,153,0,.04))}
-.s-num{width:32px;height:32px;border-radius:50%;flex-shrink:0;
-  background:rgba(255,153,0,.1);border:1.5px solid rgba(255,153,0,.28);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--f-head);font-size:12.5px;font-weight:800;color:var(--aws);
-  margin-top:2px;transition:background .2s}
-.step:hover .s-num{background:rgba(255,153,0,.2)}
-.s-body{padding-bottom:26px}
-.s-body h4{font-family:var(--f-head);font-size:13.5px;font-weight:700;
-  color:rgba(255,255,255,.88);margin-bottom:4px}
-.s-body p{font-family:var(--f-body);font-size:12.5px;color:rgba(255,255,255,.4);line-height:1.55}
-
-/* Trust pills */
-.l-trust{display:flex;gap:8px;flex-wrap:wrap}
-.trust-pill{display:flex;align-items:center;gap:7px;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
-  border-radius:9px;padding:8px 13px;
-  font-family:var(--f-body);font-size:12px;font-weight:600;color:rgba(255,255,255,.52)}
-
-/* Step stagger */
-.step:nth-child(1){animation:sli .6s .35s cubic-bezier(.16,1,.3,1) both}
-.step:nth-child(2){animation:sli .6s .45s cubic-bezier(.16,1,.3,1) both}
-.step:nth-child(3){animation:sli .6s .55s cubic-bezier(.16,1,.3,1) both}
-.step:nth-child(4){animation:sli .6s .65s cubic-bezier(.16,1,.3,1) both}
-
-/* ═══════════════════════════════════
-   RIGHT PANEL
-═══════════════════════════════════ */
-.right{
-  background:var(--n50);display:flex;
-  flex-direction:column;align-items:center;justify-content:center;
-  padding:52px 60px;overflow-y:auto;
-  animation:slir .7s .1s cubic-bezier(.16,1,.3,1) both;
-}
-@keyframes slir{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
-.form-wrap{width:100%;max-width:460px}
-
-.fw-hd{margin-bottom:32px}
-.fw-hd h2{font-family:var(--f-head);font-size:25px;font-weight:800;
-  letter-spacing:-.03em;color:var(--n900);margin-bottom:8px}
-.fw-hd p{font-family:var(--f-body);font-size:14px;color:var(--n500);line-height:1.6}
-.fw-pill{display:inline-flex;align-items:center;gap:7px;margin-top:11px;
-  background:var(--aws-50);border:1px solid rgba(255,153,0,.25);
-  border-radius:8px;padding:5px 12px;
-  font-family:var(--f-head);font-size:12px;font-weight:700;color:var(--aws-d)}
-
-/* Form */
-form{display:flex;flex-direction:column;gap:16px}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-.field{display:flex;flex-direction:column;gap:5px}
-label.lbl{font-family:var(--f-head);font-size:12px;font-weight:700;
-  letter-spacing:.01em;color:var(--n700)}
-label.lbl .req{color:#e53e3e;margin-left:2px}
-input,select,textarea{
-  font-family:var(--f-body);font-size:14px;color:var(--n900);
-  background:white;border:1.5px solid var(--n200);
-  border-radius:10px;padding:11px 14px;
-  transition:border-color .18s,box-shadow .18s;outline:none;width:100%}
-input::placeholder,textarea::placeholder{color:var(--n400)}
-input:focus,select:focus,textarea:focus{
-  border-color:var(--sg-500);box-shadow:0 0 0 3px rgba(79,45,196,.1)}
-select{cursor:pointer;appearance:none;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239595B0' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
-textarea{resize:none;min-height:88px;line-height:1.6}
-
-/* Checkbox group */
-.chk-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.chk-item{display:flex;align-items:center;gap:9px;
-  background:white;border:1.5px solid var(--n200);border-radius:9px;
-  padding:10px 13px;cursor:pointer;
-  transition:border-color .18s,background .18s}
-.chk-item:hover{border-color:var(--sg-400);background:var(--sg-50)}
-.chk-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--sg-600);
-  flex-shrink:0;cursor:pointer}
-.chk-item span{font-family:var(--f-body);font-size:13px;font-weight:500;color:var(--n700)}
-.chk-item:has(input:checked){border-color:var(--sg-400);background:var(--sg-50)}
-.chk-item:has(input:checked) span{color:var(--sg-700);font-weight:600}
-
-/* Submit */
-.btn-go{
-  width:100%;padding:15px 24px;margin-top:4px;
-  background:linear-gradient(135deg,var(--aws-d),var(--aws));
-  color:var(--dk1);font-family:var(--f-head);font-size:15px;font-weight:800;
-  letter-spacing:-.01em;border:none;border-radius:12px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;gap:9px;
-  box-shadow:0 4px 20px rgba(255,153,0,.35);
-  transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
-.btn-go::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
-  transform:skewX(-15deg);transition:left .5s ease}
-.btn-go:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,153,0,.48)}
-.btn-go:hover::after{left:160%}
-.btn-go:active{transform:none}
-.btn-go:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
-.arrow{font-size:17px;transition:transform .2s}
-.btn-go:hover .arrow{transform:translateX(3px)}
-.spin{width:18px;height:18px;border:2.5px solid rgba(0,0,0,.2);
-  border-top-color:var(--dk1);border-radius:50%;
-  animation:sp .7s linear infinite;display:none}
-@keyframes sp{to{transform:rotate(360deg)}}
-.is-loading .spin{display:block}
-.is-loading .btn-lbl,.is-loading .arrow{display:none}
-
-.disclaimer{font-family:var(--f-body);font-size:11.5px;color:var(--n400);
-  text-align:center;line-height:1.55;margin-top:2px}
-.disclaimer a{color:var(--sg-500)}
-
-/* ── SUCCESS ── */
-.success{display:none;text-align:center;padding:16px 0}
-.suc-ico{width:72px;height:72px;border-radius:50%;margin:0 auto 24px;
-  background:linear-gradient(135deg,var(--aws-d),var(--aws));
-  display:flex;align-items:center;justify-content:center;font-size:30px;
-  box-shadow:0 8px 28px rgba(255,153,0,.35);
-  animation:pop .6s cubic-bezier(.34,1.56,.64,1)}
-@keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
-.success h2{font-family:var(--f-head);font-size:24px;font-weight:800;
-  letter-spacing:-.03em;color:var(--n900);margin-bottom:10px}
-.success>p{font-family:var(--f-body);font-size:14.5px;color:var(--n500);
-  line-height:1.65;margin-bottom:28px}
-.ns-card{background:white;border:1px solid var(--n200);border-radius:14px;
-  padding:22px 24px;text-align:left;margin-bottom:26px;
-  display:flex;flex-direction:column;gap:14px}
-.ns-card-lbl{font-family:var(--f-head);font-size:10.5px;font-weight:700;
-  text-transform:uppercase;letter-spacing:.1em;color:var(--n400)}
-.ns-row{display:flex;align-items:flex-start;gap:12px}
-.ns-n{width:26px;height:26px;border-radius:50%;flex-shrink:0;
-  background:var(--sg-50);border:1px solid var(--sg-200);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--f-head);font-size:11px;font-weight:800;color:var(--sg-600)}
-.ns-row h4{font-family:var(--f-head);font-size:13px;font-weight:700;color:var(--n900);margin-bottom:2px}
-.ns-row p{font-family:var(--f-body);font-size:12.5px;color:var(--n500);line-height:1.5}
-.btn-ret{display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--f-head);font-size:13.5px;font-weight:700;color:var(--sg-600);
-  background:var(--sg-50);border:1.5px solid var(--sg-200);
-  padding:10px 20px;border-radius:10px;transition:background .18s,border-color .18s}
-.btn-ret:hover{background:var(--sg-100);border-color:var(--sg-400)}
-
-/* Responsive */
-@media(max-width:960px){
-  .page{grid-template-columns:1fr}
-  .left{padding:40px 36px}
-  .l-hero{margin:44px 0 40px}
-  .right{padding:48px 36px}
-}
-@media(max-width:540px){
-  .right{padding:40px 20px}
-  .row2{grid-template-columns:1fr}
-  .chk-grid{grid-template-columns:1fr}
-}
-  /* ===== Logo alignment (Sysgrate + AWS) ===== */
-.l-logo{
-  display:flex;
-  align-items:center;
-  gap:8px;
+body{
+margin:0;
+font-family:'Inter',sans-serif;
+background:#ffffff;
 }
 
-.aws-logo-demo{
-  height:24px;
-  width:auto;
-  margin-left:12px;
+/* Header */
+
+.header{
+
+display:flex;
+align-items:center;
+padding:20px 60px;
+border-bottom:1px solid #e6e6e6;
+background:white;
+
 }
+
+.header img{
+
+height:40px;
+
+}
+
+/* Calendly container */
+
+.calendly-container{
+
+height:calc(100vh - 80px);
+
+}
+
+.calendly-inline-widget{
+
+width:100%;
+height:100%;
+
+}
+
 </style>
+
 </head>
+
 <body>
-<div class="page">
 
-<!-- ══════ LEFT ══════ -->
-<div class="left">
-  <canvas id="pc"></canvas>
-  <div class="left-in">
+<!-- HEADER -->
 
-    <div class="topbar">
-      <a href="https://sysgrate-aws-connect.vercel.app/#contact" class="l-logo">
-           <img src="sysgrate-logo.png" alt="Sysgrate" class="sysgrate-logo"/>
-           <img src="aws-logo1.png" alt="AWS" class="aws-logo-demo"/>
-      </a>
-      <a href="amazon-connect-v2.html" class="l-back">← Back</a>
-    </div>
+<div class="header">
 
-    <div class="l-hero">
-      <div class="l-badge">
-        <div class="bdot"></div>
-        Free · No obligation · 30 minutes
-      </div>
-      <h1>Let's Talk About<br/>Your Contact<br/><span class="h1-aws">Center Future</span></h1>
-      <p>In 30 minutes, a Sysgrate Amazon Connect specialist will assess your current setup, identify cost-saving opportunities, and show you what a modern cloud contact center looks like for your business.</p>
-    </div>
+<img src="sysgrate-logo.png" alt="Sysgrate">
 
-    <div class="l-steps">
-      <div class="ls-lbl">What happens on the call</div>
-      <div class="step-list">
-        <div class="step">
-          <div class="s-num">1</div>
-          <div class="s-body">
-            <h4>Current State Review</h4>
-            <p>We listen. You walk us through your current setup, challenges, and what's not working.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="s-num">2</div>
-          <div class="s-body">
-            <h4>Expert Assessment</h4>
-            <p>We share what we see — quick wins, risks, and how Amazon Connect maps to your needs.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="s-num">3</div>
-          <div class="s-body">
-            <h4>Live Demo (Optional)</h4>
-            <p>See Amazon Connect in action — real flows, real AI, real integrations. Not slides.</p>
-          </div>
-        </div>
-        <div class="step">
-          <div class="s-num">4</div>
-          <div class="s-body">
-            <h4>Clear Next Steps</h4>
-            <p>You leave with a written summary, timeline estimate, and a clear decision framework.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="l-trust">
-      <div class="trust-pill">☁️ AWS Certified SDP</div>
-      <div class="trust-pill">🏆 Zoom Platinum Partner</div>
-      <div class="trust-pill">⏱️ 30-min session</div>
-      <div class="trust-pill">🌍 Any timezone</div>
-    </div>
-
-  </div>
 </div>
 
-<!-- ══════ RIGHT ══════ -->
-<div class="right">
-  <div class="form-wrap">
+<!-- CALENDLY EMBED -->
 
-    <div class="fw-hd" id="fw-hd">
-      <h2>Book Your Demo Call</h2>
-      <p>Fill in your details and we'll confirm a time within one business day.</p>
-      <div class="fw-pill">
-        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-        </svg>
-        30-minute session · Free · No commitment
-      </div>
-    </div>
-                
-      <form id="dc-form" action="https://api.web3forms.com/submit" method="POST">
-      <input type="hidden" name="access_key" value="a51d08fb-610b-4cae-8046-27153ea22d26">
-      <input type="hidden" name="from_name" value="Sysgrate AWS Connect Demo Request">
-      <input type="hidden" name="_subject" value="New Demo Request - Sysgrate AWS Connect">
-       <input type="hidden" name="_next" value="https://sysgrate-aws-connect.vercel.app/thank-you.html">
-       <input type="hidden" name="_captcha" value="false">
-     
-      <div class="row2">
-        <div class="field">
-          <label class="lbl">First Name <span class="req">*</span></label>
-          <input type="text" name="first_name" placeholder="Jane" required/>
-        </div>
-        <div class="field">
-          <label class="lbl">Last Name <span class="req">*</span></label>
-          <input type="text" name="last_name" placeholder="Smith" required/>
-        </div>
-      </div>
+<div class="calendly-container">
 
-      <div class="field">
-        <label class="lbl">Work Email <span class="req">*</span></label>
-        <input type="email" name="email" placeholder="jane@company.com" required/>
-      </div>
-
-      <div class="row2">
-        <div class="field">
-          <label class="lbl">Phone Number</label>
-          <input type="tel" name="phone" placeholder="+1 555 000 0000"/>
-        </div>
-        <div class="field">
-          <label class="lbl">Company <span class="req">*</span></label>
-          <input type="text" name="company" placeholder="Acme Corp" required/>
-        </div>
-      </div>
-
-      <div class="row2">
-        <div class="field">
-          <label class="lbl">Job Title</label>
-          <input type="text" name="job_title" placeholder="Head of CX"/>
-        </div>
-        <div class="field">
-          <label class="lbl">Company Size</label>
-          <select name="company_size">
-            <option value="">Select…</option>
-            <option>1–50 employees</option>
-            <option>51–200 employees</option>
-            <option>201–500 employees</option>
-            <option>501–2,000 employees</option>
-            <option>2,000+ employees</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="lbl">Preferred Meeting Time</label>
-        <select name="preferred_time">
-          <option value="">Select a preference…</option>
-          <option>Morning (8am–12pm)</option>
-          <option>Afternoon (12pm–4pm)</option>
-          <option>Late afternoon (4pm–6pm)</option>
-          <option>Flexible — any time works</option>
-        </select>
-      </div>
-
-      <div class="field">
-        <label class="lbl">What are you primarily interested in?</label>
-        <div class="chk-grid">
-          <label class="chk-item"><input type="checkbox" name="interest" value="Amazon Connect Migration"/><span>Connect Migration</span></label>
-          <label class="chk-item"><input type="checkbox" name="interest" value="New Contact Center"/><span>New Contact Center</span></label>
-          <label class="chk-item"><input type="checkbox" name="interest" value="AI & Automation"/><span>AI &amp; Automation</span></label>
-          <label class="chk-item"><input type="checkbox" name="interest" value="CRM Integration"/><span>CRM Integration</span></label>
-          <label class="chk-item"><input type="checkbox" name="interest" value="Security Assessment"/><span>Security Assessment</span></label>
-          <label class="chk-item"><input type="checkbox" name="interest" value="Managed Support"/><span>Managed Support</span></label>
-        </div>
-      </div>
-
-      <div class="field">
-        <label class="lbl">What's your biggest contact center challenge right now?</label>
-        <textarea name="challenge" placeholder="e.g. High agent turnover, outdated IVR, no visibility into call analytics, expensive legacy platform…"></textarea>
-      </div>
-
-      <button type="submit" class="btn-go" id="submit-btn">
-        <div class="spin" id="spin"></div>
-        <span class="btn-lbl">Book My Demo Call</span>
-        <span class="arrow">→</span>
-      </button>
-
-      <p class="disclaimer">
-        By submitting, you agree to be contacted by Sysgrate. We never share your data.<br/>
-        Questions? Email <a href="/cdn-cgi/l/email-protection#9afff4f5e9f2b4fdf5feedf3f4dae9e3e9fde8fbeeffb4f9f5f7"><span class="__cf_email__" data-cfemail="086d66677b60266f676c7f6166487b717b6f7a697c6d266b6765">[email&#160;protected]</span></a>
-      </p>
-    </form>
-
-    <!-- SUCCESS -->
-    <div class="success" id="success">
-      <div class="suc-ico">✅</div>
-      <h2>You're Booked In!</h2>
-      <p>Thank you — your demo call request has been received. Enosh and the team will confirm your time slot within one business day.</p>
-      <div class="ns-card">
-        <div class="ns-card-lbl">What happens next</div>
-        <div class="ns-row">
-          <div class="ns-n">1</div>
-          <div><h4>Confirmation Email</h4><p>You'll receive a confirmation from <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="71141f1e02195f161e1506181f3102080216031005145f121e1c">[email&#160;protected]</a> within 24 hours.</p></div>
-        </div>
-        <div class="ns-row">
-          <div class="ns-n">2</div>
-          <div><h4>Zoom Invite Sent</h4><p>A calendar invite with the Zoom link will arrive before the call.</p></div>
-        </div>
-        <div class="ns-row">
-          <div class="ns-n">3</div>
-          <div><h4>30-Minute Expert Session</h4><p>Your Sysgrate specialist will review your setup and outline clear next steps.</p></div>
-        </div>
-      </div>
-      <a href="amazon-connect-v2.html" class="btn-ret">← Back to Amazon Connect</a>
-    </div>
-
-  </div>
+<div class="calendly-inline-widget"
+data-url="https://calendly.com/sysgrate-technologies/30min?month=2026-03">
 </div>
 
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* Particle canvas */
-(function(){
-  const cv=document.getElementById('pc');
-  if(!cv)return;
-  const left=document.querySelector('.left');
-  const ctx=cv.getContext('2d');
-  const COLS=['#FF9900','#FFB74D','#4F2DC4','#8B63F0'];
-  let W,H,nodes=[];
-  const resize=()=>{W=cv.width=left.offsetWidth;H=cv.height=left.offsetHeight};
-  resize();window.addEventListener('resize',resize,{passive:true});
-  class N{
-    reset(i){this.x=Math.random()*W;this.y=i?Math.random()*H:H+10;
-      this.vx=(Math.random()-.5)*.25;this.vy=-(Math.random()*.28+.07);
-      this.r=Math.random()*2.2+.6;this.life=0;this.max=Math.random()*350+180;
-      this.col=COLS[Math.floor(Math.random()*COLS.length)]}
-    constructor(i){this.reset(i)}
-    tick(){this.x+=this.vx;this.y+=this.vy;this.life++;
-      if(this.y<-10||this.life>this.max)this.reset(false)}
-    draw(){const p=this.life/this.max;
-      const a=p<.15?p/.15:p>.8?1-(p-.8)/.2:1;
-      ctx.globalAlpha=a*.5;ctx.fillStyle=this.col;
-      ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fill()}
-  }
-  for(let i=0;i<65;i++)nodes.push(new N(true));
-  function edges(){
-    for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){
-      const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y;
-      const d=Math.sqrt(dx*dx+dy*dy);
-      if(d<80){ctx.globalAlpha=(1-d/80)*.08;ctx.strokeStyle='#FF9900';
-        ctx.lineWidth=.5;ctx.beginPath();
-        ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.stroke()}
-    }
-  }
-  let raf;
-  function loop(){ctx.clearRect(0,0,W,H);edges();
-    nodes.forEach(n=>{n.tick();n.draw()});ctx.globalAlpha=1;
-    raf=requestAnimationFrame(loop)}
-  loop();
-  document.addEventListener('visibilitychange',()=>document.hidden?cancelAnimationFrame(raf):loop());
-})();
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 
-/* Form submit */
-<script>
-
-const form = document.getElementById("dc-form");
-const btn = document.getElementById("submit-btn");
-
-form.addEventListener("submit", async function(e) {
-
-e.preventDefault();
-
-btn.classList.add("is-loading");
-btn.disabled = true;
-
-const formData = new FormData(form);
-formData.append("access_key","a51d08fb-610b-4cae-8046-27153ea22d26");
-
-try {
-
-const response = await fetch("https://api.web3forms.com/submit",{
-method:"POST",
-body:formData
-});
-
-const result = await response.json();
-
-if(result.success){
-
-window.location.href="/thank-you.html";
-
-}else{
-
-alert("Submission failed");
-
-}
-
-}catch(error){
-
-alert("Error submitting form");
-
-}
-
-});
-
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
+</body>
+</html>
